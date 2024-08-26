@@ -28,13 +28,3 @@
 	justify-content: space-between;
 	width: 100%;
 }
-
-.dg {
-	border-color: red;
-	color: red;
-}
-.dg:hover {
-	border-color: transparent;
-	background: red;
-	color: white;
-}

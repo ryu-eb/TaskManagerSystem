@@ -2,8 +2,8 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/userDetail.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
 	<title>Task Progress Manager</title>
@@ -15,7 +15,7 @@
 			<div class="pgtitle_pd  spc-betw">
 				<h3>詳細情報</h3>
 				<form action="#" th:action="@{/user/delete/{id}(id=${user.id})}" th:method="get">
-					<button class="cmbtn rbtn" type="submit">削除</button>
+					<button class="cmbtn deletebtn" type="submit">削除</button>
 				</form>
 			</div>
 		</div>

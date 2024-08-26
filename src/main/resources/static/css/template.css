@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.taskTitle{
+	flex-grow: 1;
+}
+
+.taskDesc{
+	height: 100px;
+}
+
+.taskDueEdit{
+	flex-flow: row nowrap;
+	justify-content: left;
+}
+
+.err{
+	margin: 10px;
+	color: red;
+	font-weight: bold;
+	width: 1000px;
+}
+
+.err span{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.ovflw {
+	overflow-wrap: break-word;
+}

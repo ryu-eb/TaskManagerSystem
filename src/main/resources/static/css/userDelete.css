@@ -1,15 +1,5 @@
 @charset "UTF-8";
 
-.rbtn {
-	border-color: red;
-	color: red;
-}
-.rbtn:hover {
-	border-color: transparent;
-	color: white;
-	background: red;
-}
-
 .bld{
 	font-weight: bold;
 }

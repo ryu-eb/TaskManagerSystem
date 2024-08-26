@@ -88,3 +88,14 @@ body {
 	display: flex;
 	justify-content: space-between
 }
+
+.deletebtn{
+	background: white;
+	border-color: red;
+	color: red;
+}
+.deletebtn:hover{
+	background: red;
+	border-color: transparent;
+	color: white;
+}

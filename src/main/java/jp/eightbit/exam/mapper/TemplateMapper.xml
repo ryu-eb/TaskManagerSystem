@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.eightbit.exam.mapper.TemplateMapper">
+	<select id="getByParentAndAuth" resultType="jp.eightbit.exam.entity.Template">
+		SELECT * FROM templates WHERE parentId = #{parent} AND authRangeId &gt;= #{auth}
+	</select>
+	
+	<select id="getById" resultType="jp.eightbit.exam.entity.Template">
+		SELECT * FROM templates WHERE id = #{id}
+	</select>
+	
+	<insert id="add">
+		INSERT INTO templates (title, description, due, dblCheck, createrId, parentId, authRangeId) 
+			VALUES (#{title}, #{description}, #{due}, #{dblCheck}, #{createrId}, #{parentId}, #{authRangeId})
+	</insert>
+</mapper>

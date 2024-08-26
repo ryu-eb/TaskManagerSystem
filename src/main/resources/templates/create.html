@@ -14,7 +14,12 @@
 	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
 	<div class="modalArea">
 		<div class="pgtitle">
-			<div class="pgtitle_pd"><h3>タスク新規登録</h3></div>
+			<div class="pgtitle_pd spc-betw">
+				<h3>タスク新規登録</h3>
+				<form action="#" th:action="@{/template}" th:method="get">
+					<button class="cmbtn" type="submit">テンプレートを使う</button>
+				</form>
+			</div>
 		</div>
 		<div class="cModal">
 			<div class="cmHeader cmEl" th:text="登録情報"></div>
@@ -79,6 +84,15 @@
 								<span class="err" th:if="${#fields.hasErrors('authRangeId')}" th:errors="*{authRangeId}">権限エラー</span>
 							</td>
 						</tr>
+						<tr th:if="${!isTemplate}">
+							<td>テンプレートとして</td><td></td>
+							<td>
+								<div>
+									<label>保存する</label><input type="radio" name="template" value="true">
+									<label>保存しない</label><input type="radio" name="template" value="false" checked="checked">
+								</div>
+							</td>
+						</tr>
 					</table>
 				</div>
 				<input type="hidden" name="createrId" th:value="*{createrId}">
@@ -87,7 +101,7 @@
 			<div class="cmEl fcenter">
 				<div class="spc-betw">
 					<button class="cmbtn bbtn" type="button" onclick="confirmSubmit()">登録</button>
-					<button class="cmbtn dg" type="button" onclick="goBack()">戻る</button>
+					<button class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
 				</div>
 			</div>
 			<div class="cmBottom cmEl"></div>

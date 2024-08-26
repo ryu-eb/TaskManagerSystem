@@ -11,11 +11,11 @@ public class Task {
 	private int id;
 	
 	@Size(min=1, message="1文字以上にしてください")
-	@Size(max=50, message="500文字以上にしてください")
+	@Size(max=50, message="50文字以下にしてください")
 	private String title;
 	
 	@Size(min=1, message="1文字以上にしてください")
-	@Size(max=500, message="500文字にしてください")
+	@Size(max=500, message="500文字以下にしてください")
 	private String description;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -38,7 +39,7 @@ public class TaskController {
 	//System.out.println("now its " + loguser.getUsername() + " logged in.");
 	
 	@GetMapping("/task")
-	public String showIndex(Model model) {
+	public String showIndex(Model model, @ModelAttribute("err")String err, @ModelAttribute("errTask")Task errtask) {
 		//ログインユーザー情報の取得
 		User user = logUserServ.getLoginUser();
 		
@@ -59,6 +60,12 @@ public class TaskController {
 		//ステータスリストの取得
 		Map<Integer, Status> statlist = statusService.getMapByTaskList(hist);
 		model.addAttribute("map", statlist);
+		
+		//精査失敗時
+		if (errtask != null) {
+			model.addAttribute("err", err);
+			model.addAttribute("errTask", errtask);
+		}
 		
 		return "task";
 	}

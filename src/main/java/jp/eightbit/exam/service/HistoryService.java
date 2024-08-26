@@ -92,31 +92,43 @@ public class HistoryService {
 		
 		for (Status st : list) {
 			int index = st.getId();
+			MyUt.print("index : " + index);
 			if (flg) {
 				switch(index) {
 				case 2://実行中へ
+					MyUt.print("実行中へ変更");
 					hist.setStatusId(2);
 					hist.setDoneUserId(userid);
 					break;
 				case 4://精査中へ
+					MyUt.print("精査中へ変更");
+					if (hist.getDoneUserId() == user.getId()) return -1;
 					hist.setStatusId(4);
-					hist.setDbl(MyUt.dateToString(new Date()));
+					hist.setDblUserId(userid);
 					break;
 				case 3://精査待ちへ
+					MyUt.print("精査待ちへ変更");
+					hist.setDone(MyUt.dateToString(new Date()));
 					if (isDbl) {
+						if (hist.getDoneUserId() != user.getId()) return -2;
 						hist.setStatusId(3);
-						hist.setDblUserId(userid);
 						break;
 					}
+					if (hist.getDoneUserId() != user.getId()) return -3;
 				case 5://完了へ
+					MyUt.print("完了へ変更");
+					if (hist.getDblUserId() != user.getId() && hist.getDblUserId() != 0) return -4;
 					hist.setStatusId(5);
-					hist.setDone(MyUt.dateToString(new Date()));
+					if (isDbl) hist.setDbl(MyUt.dateToString(new Date()));
 					break;
 				}
 				break;
 			}
 			//statIdが同じだったらその次の値へ
-			if (nowstat == index) flg = true;
+			if (nowstat == index) {
+				flg = true;
+				MyUt.print("nowStat and index is same, so next index....");
+			}
 		}
 		
 		return historyMapper.save(hist);

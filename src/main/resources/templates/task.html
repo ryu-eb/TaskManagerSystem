@@ -39,6 +39,9 @@
 					</form>
 				</div>
 			</div>
+			<div class="err" th:if="${errTask} != null and ${errTask.id} == *{id}">
+				<span th:text="|*{title}${err}|">test err message</span>
+			</div>
 		</div>
 	</div>
 </body>

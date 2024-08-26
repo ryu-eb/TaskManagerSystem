@@ -44,7 +44,7 @@ function getBtnText(statusId, dblCk){
 		case '3':
 			return '精査中';
 		case '4':
-			return '完了へ';
+			return '完了';
 		default:
 			return '';
 	}

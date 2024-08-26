@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+.deletebtn{
+	background: white;
+	border-color: red;
+	color: red;
+}
+.deletebtn:hover{
+	background: red;
+	border-color: transparent;
+	color: white;
+}
+
+/*---------------------------------------*/
+
+.taskTitle{
+	flex-grow: 1;
+}
+
+.taskDesc{
+	height: 100px;
+}
+
+.taskDeleteBtn{
+	flex-flow: row nowrap;
+	justify-content: right;
+}
+
+.btnLike {
+	padding: 8px 15px;
+	background: white;
+	font-size: 15px;
+  	border-radius: 5px;
+}

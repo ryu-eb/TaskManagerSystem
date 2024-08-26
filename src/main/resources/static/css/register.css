@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.rgForm{
+	flex-direction: column;
+	justify-content: left;
+	height: auto;
+}
+
+.rgEl{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.err{
+	color: red;
+	font-size: 14px;
+	text-align: center;
+}
+
+.rgSlt{
+	height: 23px;
+}
+
+.spc-betw {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 35%;
+}
+
+.dg {
+	border-color: red;
+	color: red;
+}
+.dg:hover {
+	border-color: transparent;
+	background: red;
+	color: white;
+}
+
+.fcenter {
+	justify-content: center;
+}
+
+.tbl-sp {
+	width: 80px;
+}

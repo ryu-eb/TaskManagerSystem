@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.cmEl {
+	display:flex;
+	align-items: center;
+	padding-right: 30px;
+	padding-left: 30px;	
+	height: 50px;
+}
+
+.cModal {
+	border-radius: 15px;
+	width: 1000px;
+	font-weight: normal;
+	color: black;
+	margin: 10px;
+	font-size: 17px;
+	background-color: white;
+}
+
+.cmHeader {
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-weight: bold;
+	background-color: #DDDDDDFF;
+}
+
+.cmBottom{
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.cmbtn{
+	appearance: none;
+  	border-radius: 5px;
+	color: #626262FF;
+	padding: 8px 15px;
+	font-size: 15px;
+	transition: 0.3s;
+	border: 2px solid #626262FF;
+	background: white;
+	font-weight: bold;
+}
+.cmbtn:hover {
+	background: #626262FF;
+	color: white;
+}
+
+.tglbtn{
+	background: white;
+	color: black;
+	border: 0;
+}

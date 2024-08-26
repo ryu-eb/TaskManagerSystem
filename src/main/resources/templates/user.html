@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/user.css}" type="text/css">
+	<title>Task Progress Manager</title>
+</head>
+<body>
+	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
+	<div class="modalArea">
+	<div class="pgtitle spc-betw">
+		<div class="pgtitle_pd spc-betw">
+		<h3>関連ユーザ一覧</h3>
+			<form action="#" th:action="@{/register}" th:method="get">
+				<button class="cmbtn bbtn" type="submit">新規登録</button>
+			</form>
+		</div>
+	</div>
+		<div class="cModal" th:each="user : ${list}" th:object="${user}">
+			<div class="cmHeader cmEl">
+				<div class="taskTitle fg" th:text="*{username}" th:name="tkTitle"></div>
+			</div>
+			<div class="cmBottom cmEl spc-betw">
+				<div>
+					<span>権限&nbsp;</span>
+					<span th:text="${map[__*{id}__].getName}"></span>
+				</div>
+				<form action="#" th:action="@{/user/{id}(id=*{id})}" th:method="get">
+					<button class="cmbtn" type="submit">詳細</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

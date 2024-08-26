@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Progress Manager</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+</head>
+<body>
+	<div class="login_form">
+		<form th:action="@{/login}" th:method="post" class="login_form_el">
+			<div class="fmcenter fmtitle">Task Progress Manager</div>
+			<div>ユーザー名</div>
+			<div><input type="text" name="username"/></div>
+			<div>パスワード</div>
+			<div><input type="password" name="password"/></div>
+			<div class="fmbtn fmcenter"><button class="btn" type="submit" th:text="ログイン"></button></div>
+		</form>
+		<div class="err"><span th:if="${param.error}">ユーザー名かパスワードが違います。</span></div>
+	</div>
+</body>
+</html>

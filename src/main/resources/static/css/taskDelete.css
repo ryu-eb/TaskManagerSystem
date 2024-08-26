@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.deletebtn{
+	background: white;
+	border-color: red;
+	color: red;
+}
+.deletebtn:hover{
+	background: red;
+	border-color: transparent;
+	color: white;
+}
+
+/*---------------------------------------*/
+
+.taskTitle{
+	flex-grow: 1;
+}
+
+.taskDesc{
+	height: 100px;
+}
+
+.taskDeleteBackBtn{
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.invalid-cmbtn:hover {
+	background: white;
+	color: black;
+}

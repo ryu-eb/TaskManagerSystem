@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.taskTitle{
+	flex-grow: 1;
+}
+
+.taskDesc{
+	height: 100px;
+}
+
+.taskDueEdit{
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.taskDue span{
+	font-weight: bold;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.eightbit.exam.mapper.TaskMapper">
+	
+	<select id="getAllTask" resultType="jp.eightbit.exam.entity.Task">
+		SELECT * FROM tasks
+	</select>
+	
+	<select id="getRelateTask" resultType="jp.eightbit.exam.entity.Task">
+		SELECT * FROM tasks
+		WHERE createrId IN 
+		<foreach item="usrId" index="index" collection="family" open="(" separator="," close=")">
+			#{usrId}
+		</foreach>
+		and id IN 
+		<foreach item="tskId" index="index" collection="inactives" open="(" separator="," close=")">
+			#{tskId}
+		</foreach>
+	</select>
+	
+	<select id="getById" resultType="jp.eightbit.exam.entity.Task">
+		SELECT * FROM tasks WHERE id = #{id}
+	</select>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+		 INSERT INTO tasks (title, description, due, dblCheck, createrId, authRangeId) 
+		 	VALUES (#{title}, #{description}, #{due}, #{dblCheck}, #{createrId}, #{authRangeId})
+	</insert>
+	
+	<delete id="deleteById">
+		DELETE FROM tasks WHERE id = #{id}
+	</delete>
+	
+	<update id="updateToVoid">
+		UPDATE tasks SET createrId = #{voidid} WHERE createrId = #{id}
+	</update>
+	
+	<select id="getAllByCreaterId" resultType="jp.eightbit.exam.entity.Task">
+		SELECT * FROM tasks WHERE createrId = #{id}
+	</select>
+</mapper>

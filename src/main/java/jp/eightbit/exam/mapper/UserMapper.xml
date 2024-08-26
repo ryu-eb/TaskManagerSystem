@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jp.eightbit.exam.mapper.UserMapper">
+	<select id="getByName" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE username = #{name}
+	</select>
+	
+	<select id="getById" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE id = #{id}
+	</select>
+	
+	<select id="getByParentId" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE parentId = ${id}
+	</select>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id">
+		 INSERT INTO user (username, password, parentId, authId) VALUES (#{username}, #{password}, #{parentId}, #{authId})
+	</insert>
+	
+	<delete id="deleteById">
+		DELETE FROM user WHERE id = #{id}
+	</delete>
+	
+	<update id="updateToMyParent">
+		UPDATE user SET parentId = #{parent} WHERE parentId = #{id}
+	</update>
+	
+	<select id="getAll" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user
+	</select>
+</mapper>

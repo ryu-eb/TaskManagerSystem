@@ -1,0 +1,52 @@
+@charset "UTF-8";
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.login_form {
+	background-color: #1113;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	height: 500px;
+}
+
+.login_form_el {
+	padding: 20px;
+}
+
+.fmcenter {
+	text-align: center;
+}
+
+.fmtitle {
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.fmbtn {
+	margin-top: 10px;
+}
+
+.btn {
+	font-weight: bold;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: transparent;
+	padding: 5px 12px;
+	transition: 0.5s;
+	color: black;
+}
+.btn:hover {
+	background-color: black;
+	color: white;
+}
+
+.err {
+	color: red;
+	font-size: small;
+}

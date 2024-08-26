@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.spc-r{
+	display: flex;
+	justify-content: right;
+}
+
+.rbtn {
+	border-color: red;
+	color: red;
+}
+.rbtn:hover {
+	border-color: transparent;
+	color: white;
+	background: red;
+}
+
+.bld{
+	font-weight: bold;
+}
+
+.tEl{
+	height: auto;
+}
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/task.css}" type="text/css">
+	<script type="module" th:src="@{/js/statusColor.js}"></script>
+	<script type="module" th:src="@{/js/modalColor.js}"></script>
+	<script type="module" th:src="@{/js/indexBtn.js}"></script>
+	<title>Task Progress Manager</title>
+</head>
+<body>
+	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
+	<div class="modalArea">
+		<div class="pgtitle">
+			<div class="pgtitle_pd  spc-betw">
+				<h3>タスク一覧</h3>
+				<form action="#" th:action="@{/create}" th:method="get">
+					<button class="cmbtn bbtn" type="submit">新規登録</button>
+				</form>
+			</div>
+		</div>
+		<div th:each="tk : ${tasks}" th:object="${tk}">
+			<div class="cModal" th:with="status = ${map[__*{id}__]}">
+				<div class="cmHeader cmEl">
+					<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
+					<form action="#" th:action="@{/task/toggle/{id}(id=*{id})}" th:method="post" name="tkForm">
+						<input type="hidden" th:value="${status.getId}" name="tkStatus"><!-- js用 -->
+						<input type="hidden" th:value="*{dblCheck}" name="tkDblcheck"><!-- js用 -->
+						<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.getName}"></button>
+					</form>
+				</div>
+				<div class="taskDesc cmEl" th:text="*{description}"></div>
+				<div class="taskDueEdit cmEl cmBottom">
+					<div class="taskDue">期限&nbsp;<span th:text="*{due}"></span></div>
+					<form action="#" th:action="@{/task/{id}(id=*{id})}" th:method="get">
+						<button class="cmbtn" type="submit">詳細</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

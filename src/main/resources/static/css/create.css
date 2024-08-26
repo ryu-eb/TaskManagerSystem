@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.crForm{
+	flex-direction: column;
+	justify-content: left;
+	height: auto;
+}
+
+.crEl{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.txtArea {
+	resize: none;
+}
+
+.err{
+	color: red;
+	font-size: 14px;
+	text-align: center;
+}
+
+.spc-betw {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.dg {
+	border-color: red;
+	color: red;
+}
+.dg:hover {
+	border-color: transparent;
+	background: red;
+	color: white;
+}

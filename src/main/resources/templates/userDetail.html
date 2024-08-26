@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/userDetail.css}" type="text/css">
+	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
+	<title>Task Progress Manager</title>
+</head>
+<body>
+	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
+	<div class="modalArea">
+		<div class="pgtitle">
+			<div class="pgtitle_pd  spc-betw">
+				<h3>詳細情報</h3>
+				<form action="#" th:action="@{/user/delete/{id}(id=${user.id})}" th:method="get">
+					<button class="cmbtn rbtn" type="submit">削除</button>
+				</form>
+			</div>
+		</div>
+		<div class="cModal" th:object="${user}">
+			<div class="cmHeader cmEl">
+				<div class="taskTitle" th:text="*{username}" th:name="tkTitle"></div>
+			</div>
+			<div class="cmEl">
+				<div>
+					<span>権限&nbsp;</span>
+					<span th:text="${auth}"></span>
+				</div>
+			</div>
+			<div class="cmEl">実行履歴</div>
+			<div class="cmEl tEl">
+				<div><span>&nbsp;&nbsp;実行中</span><span class="bld" th:text="| ${doing}|"></span></div>
+				<div><span>&nbsp;&nbsp;精査中</span><span class="bld" th:text="| ${dbling}|"></span></div>
+				<div><span>&nbsp;&nbsp;完了済</span><span class="bld" th:text="| ${done}|"></span></div>
+				<div><span>&nbsp;&nbsp;精査済</span><span class="bld" th:text="| ${dbled}|"></span></div>
+			</div>
+			<div class="cmBottom cmEl spc-r">
+				<button class="cmbtn" type="button" onclick="goBack()">戻る</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

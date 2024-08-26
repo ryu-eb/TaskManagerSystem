@@ -1,0 +1,13 @@
+<header class="my_header_flg" th:fragment="my-header-fragment">
+	<div id="my_header">
+		<div class="my_header_username"><span th:text="${#authentication.name}"></span></div>
+		<div class="my_header_rw">
+			<div id="my_header_title"><a class="my_header_link" th:href="@{/task}">TaskProgressManager</a></div>
+			<div class="my_header_el"><a class="my_header_link" th:href="@{/task}">TASK MANAGEMENT</a></div>
+			<div class="my_header_el"><a class="my_header_link" th:href="@{/history}">HISTORY</a></div>
+			<div class="my_header_el"><a class="my_header_link" th:href="@{/user}">USER MANAGEMENT</a></div>
+			<div class="my_header_el"><a class="my_header_link" th:href="@{/logout}">LOGOUT</a></div>
+		</div>
+	</div>
+	<div id="my_header_bottomspace"></div>
+</header>

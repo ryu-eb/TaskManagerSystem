@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.eightbit.exam.entity.Task;
 import jp.eightbit.exam.entity.Template;
+import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.mapper.TemplateMapper;
 
 @Service
@@ -16,8 +17,13 @@ public class TemplateService {
 	TemplateMapper templateMapper;
 	
 	@Transactional
-	public List<Template> getByParentAndAuth(int parent, int auth){
-		return templateMapper.getByParentAndAuth(parent, auth);
+	public List<Template> getRelateByUser(User user){
+		return templateMapper.getRelateByUser(user);
+	}
+	
+	@Transactional
+	public int add(Template template) {
+		return templateMapper.add(template);
 	}
 	
 	@Transactional
@@ -41,5 +47,10 @@ public class TemplateService {
 	@Transactional
 	public int updateToVoid(int id) {
 		return templateMapper.updateToVoid(id);
+	}
+	
+	@Transactional
+	public int deleteById(int id){
+		return templateMapper.deleteById(id);
 	}
 }

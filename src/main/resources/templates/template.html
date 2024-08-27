@@ -25,13 +25,14 @@
 			<div class="cModal">
 				<div class="cmHeader cmEl">
 					<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
-					<form action="#" th:action="@{/template/{id}(id=*{id})}" th:method="get">
+					<form action="#" th:action="@{/template/use/{id}(id=*{id})}" th:method="get">
 						<button class="cmbtn bbtn" type="submit" name="tkBtn" th:text="このテンプレートを使う"></button>
 					</form>
 				</div>
 				<div class="taskDesc cmEl" th:text="*{description}"></div>
+				<div class="cmEl">権限&nbsp;<span th:text="${auth[__*{id}__]}"></span></div>
 				<div class="taskDueEdit cmEl cmBottom">
-					<div>権限&nbsp;<span th:text="${map[__*{id}__]}"></span></div>
+					<div>作成者&nbsp;<span th:text="${user[__*{id}__]}"></span></div>
 					<form th:if="${!isForm}" action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="get">
 						<button class="cmbtn deletebtn" type="submit">削除</button>
 					</form>

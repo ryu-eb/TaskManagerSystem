@@ -6,6 +6,10 @@ function goBack(){
 	history.back();
 }
 
+function goTemplate(){
+	location.href = '/template?isForm=false';
+}
+
 function goTmpCreate(){
 	location.href = '/template/create';
 }

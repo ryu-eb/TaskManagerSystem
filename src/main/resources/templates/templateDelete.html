@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/taskDelete.css}" type="text/css">
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
+	<title>Task Progress Manager</title>
+</head>
+<body>
+	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
+	<div class="modalArea">
+		<div class="pgtitle">
+			<div class="pgtitle_pd">
+				<h3>このタスクを削除しますか?</h3>
+			</div>
+		</div>
+		<div class="cModal" th:object="${template}">
+			<div class="cmHeader cmEl">
+				<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
+			</div>
+			<div class="taskDesc cmEl" th:text="*{description}"></div>
+			<div class="cmEl">
+				<span>作成者&nbsp;</span>
+				<span th:text="${user}"></span>
+			</div>
+			<div class="cmEl">
+				<span>権限&nbsp;</span>
+				<span th:text="${auth}"></span>
+			</div>
+			<div class="taskDeleteBackBtn cmEl cmBottom">
+				<form action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="post">
+					<button class="cmbtn deletebtn" type="submit">削除</button>
+				</form>
+				<button class="cmbtn bbtn" type="button" onclick="goBack()">戻る</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

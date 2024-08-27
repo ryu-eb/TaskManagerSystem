@@ -13,7 +13,6 @@ import jp.eightbit.exam.entity.Task;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.service.HistoryService;
 import jp.eightbit.exam.service.LoginUserService;
-import jp.eightbit.exam.service.MyUt;
 import jp.eightbit.exam.service.StatusService;
 import jp.eightbit.exam.service.TaskService;
 

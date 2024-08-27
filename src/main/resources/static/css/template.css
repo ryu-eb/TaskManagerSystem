@@ -10,7 +10,7 @@
 
 .taskDueEdit{
 	flex-flow: row nowrap;
-	justify-content: left;
+	justify-content: space-between;
 }
 
 .err{

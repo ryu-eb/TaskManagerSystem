@@ -7,7 +7,7 @@
 	<link rel="stylesheet" th:href="@{/css/create.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/inputToday.js}"></script>
 	<script type="text/javascript" th:src="@{/js/showConfirm.js}"></script>
-	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
@@ -15,15 +15,16 @@
 	<div class="modalArea">
 		<div class="pgtitle">
 			<div class="pgtitle_pd spc-betw">
-				<h3>タスク新規登録</h3>
+				<a class="pgtitle-txt txt-on">タスク新規登録</a>
 				<form action="#" th:action="@{/template}" th:method="get">
-					<button class="cmbtn" type="submit">テンプレートを使う</button>
+					<input type="hidden" name="isForm" value="true">
+					<button class="cmbtn" type="submit">テンプレート</button>
 				</form>
 			</div>
 		</div>
 		<div class="cModal">
 			<div class="cmHeader cmEl" th:text="登録情報"></div>
-			<form class="cmEl crForm" th:action="@{/create}" th:method="post" th:object="${task}" name="rgForm">
+			<form class="cmEl crForm" th:action="@{/task/create}" th:method="post" th:object="${task}" name="rgForm">
 				<div class="cmEl"></div>
 				<div class="ctEl">
 					<table>
@@ -96,12 +97,14 @@
 					</table>
 				</div>
 				<input type="hidden" name="createrId" th:value="*{createrId}">
+				<input type="hidden" name="isTemplate" th:value="${isTemplate}">
+				<input th:if="${isTemplate}" type="hidden" name="template" value="false">
 			</form>
 			<div class="cmEl"></div>
 			<div class="cmEl fcenter">
 				<div class="spc-betw">
 					<button class="cmbtn bbtn" type="button" onclick="confirmSubmit()">登録</button>
-					<button class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
+					<button class="cmbtn deletebtn" type="button" onclick="goTask()">戻る</button>
 				</div>
 			</div>
 			<div class="cmBottom cmEl"></div>

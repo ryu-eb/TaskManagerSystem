@@ -15,4 +15,6 @@ public interface TemplateMapper {
 	int add(Template template);
 	
 	Template getById(int id);
+	
+	int updateToVoid(int id);
 }

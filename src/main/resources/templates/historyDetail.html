@@ -5,7 +5,7 @@
 	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/historyDetail.css}" type="text/css">
-	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
 	<div class="modalArea">
 		<div class="pgtitle">
 			<div class="pgtitle_pd  spc-betw">
-				<h3>詳細情報</h3>
+				<a class="pgtitle-txt txt-on">詳細情報</a>
 				<form action="#" th:action="@{/history/delete/{id}(id=${history.Id})}" th:method="get">
 					<button class="cmbtn deletebtn" type="submit">削除</button>
 				</form>

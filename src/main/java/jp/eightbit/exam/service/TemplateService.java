@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jp.eightbit.exam.entity.Task;
 import jp.eightbit.exam.entity.Template;
 import jp.eightbit.exam.mapper.TemplateMapper;
 
@@ -20,12 +21,25 @@ public class TemplateService {
 	}
 	
 	@Transactional
-	public int add(Template template) {
+	public int addByTask(Task task, int parent) {
+		Template template = new Template();
+		
+		template.setTitle(task.getTitle());
+		template.setDescription(task.getDescription());
+		template.setCreaterId(task.getCreaterId());
+		template.setParentId(parent);
+		template.setAuthRangeId(task.getAuthRangeId());
+		
 		return templateMapper.add(template);
 	}
 	
 	@Transactional
 	public Template getById(int id) {
 		return templateMapper.getById(id);
+	}
+	
+	@Transactional
+	public int updateToVoid(int id) {
+		return templateMapper.updateToVoid(id);
 	}
 }

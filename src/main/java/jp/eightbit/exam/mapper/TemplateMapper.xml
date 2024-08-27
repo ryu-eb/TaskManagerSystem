@@ -10,7 +10,11 @@
 	</select>
 	
 	<insert id="add">
-		INSERT INTO templates (title, description, due, dblCheck, createrId, parentId, authRangeId) 
-			VALUES (#{title}, #{description}, #{due}, #{dblCheck}, #{createrId}, #{parentId}, #{authRangeId})
+		INSERT INTO templates (title, description, createrId, parentId, authRangeId) 
+			VALUES (#{title}, #{description}, #{createrId}, #{parentId}, #{authRangeId})
 	</insert>
+	
+	<update id="updateToVoid">
+		UPDATE templates SET createrId = 9, parentId = 3 WHERE createrId = #{id}
+	</update>
 </mapper>

@@ -1,12 +1,14 @@
 package jp.eightbit.exam.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jp.eightbit.exam.entity.Authority;
 import jp.eightbit.exam.entity.User;
 
 public class LoginUserDetails implements UserDetails{
@@ -16,9 +18,19 @@ public class LoginUserDetails implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	private Collection<? extends GrantedAuthority> authorities;
 
-	public LoginUserDetails(User user) {
+	public LoginUserDetails(User user, List<Authority> auth) {
 		this.user = user;
+		
+		List<SimpleGrantedAuthority> list = new ArrayList<>();
+		
+		auth.forEach(el -> {
+			list.add(new SimpleGrantedAuthority(el.getName()));
+		});
+		
+		this.authorities = list;
+		
 	}
 	
 	public User getUser() {
@@ -27,7 +39,7 @@ public class LoginUserDetails implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority("USER"));
+		return this.authorities;
 	}
 
 	@Override

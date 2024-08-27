@@ -2,24 +2,31 @@ package jp.eightbit.exam.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.eightbit.exam.entity.Authority;
 import jp.eightbit.exam.entity.History;
 import jp.eightbit.exam.entity.Status;
 import jp.eightbit.exam.entity.Task;
 import jp.eightbit.exam.entity.User;
+import jp.eightbit.exam.service.AuthService;
 import jp.eightbit.exam.service.HistoryService;
 import jp.eightbit.exam.service.LoginUserService;
 import jp.eightbit.exam.service.MyUt;
 import jp.eightbit.exam.service.StatusService;
 import jp.eightbit.exam.service.TaskService;
+import jp.eightbit.exam.service.TemplateService;
 import jp.eightbit.exam.service.UserService;
 
 @Controller
@@ -33,7 +40,12 @@ public class TaskController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	LoginUserService logUserServ;
+	LoginUserService loginUserService;
+	@Autowired
+	TemplateService templateService;
+	@Autowired
+	AuthService authService;
+	
 	
 	//@AuthenticationPrincipal User user
 	//System.out.println("now its " + loguser.getUsername() + " logged in.");
@@ -41,7 +53,7 @@ public class TaskController {
 	@GetMapping("/task")
 	public String showIndex(Model model, @ModelAttribute("err")String err, @ModelAttribute("errTask")Task errtask) {
 		//ログインユーザー情報の取得
-		User user = logUserServ.getLoginUser();
+		User user = loginUserService.getLoginUser();
 		
 		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
 		List<User> fam = null;
@@ -75,6 +87,48 @@ public class TaskController {
 		addSingleTaskAttribute(model,taskid);
 		
 		return "taskDetail";
+	}
+	
+	@GetMapping("/task/create")
+	public String showCreate(@ModelAttribute("tmptask")Task task, Model model) {
+		//現在ログインしてるユーザー
+		User loginuser = loginUserService.getLoginUser();
+
+		//modelに渡す用のタスク
+		task.setCreaterId(loginuser.getId());
+		model.addAttribute("task", task);
+		
+		if (Objects.nonNull(task.getTitle())) {
+			model.addAttribute("isTemplate", true);
+		}else {
+			model.addAttribute("isTemplate", false);
+		}
+		
+
+		//ログインしているユーザー以下の権限のリスト
+		List<Authority> list = authService.getUnderByIdWith(loginuser.getAuthId());
+		model.addAttribute("list", list);
+		
+		return "taskCreate";
+	}
+	
+	@PostMapping("/task/create")
+	public String toCreate(@Validated @ModelAttribute("task")Task task, BindingResult br, Model model, @RequestParam("template")boolean tmplate, @ModelAttribute("isTemplate")String istemplate){
+		User user = loginUserService.getLoginUser();
+		
+		if (br.hasErrors()) {
+			List<Authority> list = authService.getUnderByIdWith(user.getAuthId());
+			model.addAttribute("isTemplate", istemplate);
+			model.addAttribute("list", list);
+			return "taskCreate";
+		}
+		
+		//テンプレートの保存
+		if (tmplate) templateService.addByTask(task,user.getParentId());
+		
+		int id = taskService.add(task);
+		historyService.add(taskService.getById(id));
+		return "redirect:/task";
 	}
 	
 	@GetMapping("/task/delete/{taskid}")

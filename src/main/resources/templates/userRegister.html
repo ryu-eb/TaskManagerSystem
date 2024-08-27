@@ -6,18 +6,20 @@
 	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/register.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/showConfirm.js}"></script>
-	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
 	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
 	<div class="modalArea">
 		<div class="pgtitle">
-			<div class="pgtitle_pd"><h3>ユーザー登録</h3></div>
+			<div class="pgtitle_pd">
+				<a class="pgtitle-txt txt-on">ユーザー登録</a>
+			</div>
 		</div>
 		<div class="cModal">
 			<div class="cmHeader cmEl" th:text="登録情報"></div>
-			<form class="cmEl rgForm" th:action="@{/register}" th:method="post" th:object="${user}" name="rgForm">
+			<form class="cmEl rgForm" th:action="@{/user/register}" th:method="post" th:object="${user}" name="rgForm">
 				<div class="cmEl"></div>
 				<div class="rgEl">
 					<table>
@@ -66,7 +68,7 @@
 			<div class="cmEl fcenter">
 				<div class="spc-betw">
 					<button class="cmbtn bbtn" type="button" onclick="confirmSubmit()">登録</button>
-					<button class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
+					<button class="cmbtn deletebtn" type="button" onclick="goUser()">戻る</button>
 				</div>
 			</div>
 			<div class="cmBottom cmEl"></div>

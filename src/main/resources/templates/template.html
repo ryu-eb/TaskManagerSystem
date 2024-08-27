@@ -5,7 +5,7 @@
 	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/template.css}" type="text/css">
-	<script type="text/javascript" th:src="@{/js/goBack.js}"></script>
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
@@ -13,22 +13,29 @@
 	<div class="modalArea">
 		<div class="pgtitle">
 			<div class="pgtitle_pd spc-betw">
-				<h3>タスク一覧</h3>
-				<button class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
+				<div>
+					<a class="pgtitle-txt txt-off" th:href="@{/task}" th:if="${!isForm}">タスク一覧</a>
+					<a class="pgtitle-txt txt-on">テンプレート一覧</a>
+				</div>
+				<button th:if="${!isForm}" class="cmbtn bbtn" type="button" onclick="goTmpCreate()">新規作成</button>
+				<button th:if="${isForm}" class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
 			</div>
 		</div>
 		<div th:each="tm : ${list}" th:object="${tm}">
 			<div class="cModal">
 				<div class="cmHeader cmEl">
 					<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
-					<form action="#" th:action="@{/template/{id}(id=*{id})}" th:method="get" name="tkForm">
+					<form action="#" th:action="@{/template/use/{id}(id=*{id})}" th:method="get">
 						<button class="cmbtn bbtn" type="submit" name="tkBtn" th:text="このテンプレートを使う"></button>
 					</form>
 				</div>
 				<div class="taskDesc cmEl" th:text="*{description}"></div>
-				<div class="cmEl"><div>精査&nbsp;<span th:text="*{dblCheck} ? あり : なし"></span></div></div>
+				<div class="cmEl">権限&nbsp;<span th:text="${auth[__*{id}__]}"></span></div>
 				<div class="taskDueEdit cmEl cmBottom">
-					<div>期限&nbsp;<span th:text="*{due}"></span></div>
+					<div>作成者&nbsp;<span th:text="${user[__*{id}__]}"></span></div>
+					<form th:if="${!isForm}" action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="get">
+						<button class="cmbtn deletebtn" type="submit">削除</button>
+					</form>
 				</div>
 			</div>
 		</div>

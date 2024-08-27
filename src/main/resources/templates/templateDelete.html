@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
-	<link rel="stylesheet" th:href="@{/css/historyDelete.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/taskDelete.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
@@ -16,53 +16,21 @@
 				<h3>このタスクを削除しますか?</h3>
 			</div>
 		</div>
-		<div class="cModal" th:object="${task}">
+		<div class="cModal" th:object="${template}">
 			<div class="cmHeader cmEl">
 				<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
-				<div class="btnLike">完了</div>
 			</div>
 			<div class="taskDesc cmEl" th:text="*{description}"></div>
 			<div class="cmEl">
-				<span>精査&nbsp;</span>
-				<span th:text="*{dblCheck} ? 'あり' : 'なし'"></span>
-			</div>
-			<div class="cmEl" th:if="*{dblCheck}">
-				<div>
-					<span>精査日&nbsp;</span>
-					<span th:text="${history.dbl}"></span>
-				</div>
-			</div>
-			<div class="cmEl" th:if="*{dblCheck}">
-				<div>
-					<span>精査者&nbsp;</span>
-					<span th:text="${dblUser.username}"></span>
-				</div>
-			</div>
-			
-			<div class="cmEl">
 				<span>作成者&nbsp;</span>
-				<span th:text="${creater}"></span>
+				<span th:text="${user}"></span>
 			</div>
 			<div class="cmEl">
-				<div>
-					<span>期限&nbsp;</span>
-					<span th:text="*{due}"></span>
-				</div>
-			</div>
-			<div class="cmEl">
-				<div>
-					<span>作業者&nbsp;</span>
-					<span th:text="${doneUser}"></span>
-				</div>
-			</div>
-			<div class="cmEl">
-				<div>
-					<span>完了日&nbsp;</span>
-					<span th:text="${history.done}"></span>
-				</div>
+				<span>権限&nbsp;</span>
+				<span th:text="${auth}"></span>
 			</div>
 			<div class="taskDeleteBackBtn cmEl cmBottom">
-				<form action="#" th:action="@{/history/delete/{id}(id=${history.id})}" th:method="post">
+				<form action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="post">
 					<button class="cmbtn deletebtn" type="submit">削除</button>
 				</form>
 				<button class="cmbtn bbtn" type="button" onclick="goBack()">戻る</button>

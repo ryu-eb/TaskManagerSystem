@@ -42,4 +42,9 @@ public class StatusService {
 	public List<Status> getAll(){
 		return statusMapper.getAll();
 	}
+	
+	@Transactional
+	public Status getById(int id) {
+		return statusMapper.getById(id);
+	}
 }

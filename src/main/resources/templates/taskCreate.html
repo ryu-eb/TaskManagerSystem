@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/create.css}" type="text/css">
+	<script type="text/javascript" th:src="@{/js/inputToday.js}"></script>
+	<script type="text/javascript" th:src="@{/js/showConfirm.js}"></script>
+	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
+	<title>Task Progress Manager</title>
+</head>
+<body>
+	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
+	<div class="modalArea">
+		<div class="pgtitle">
+			<div class="pgtitle_pd spc-betw">
+				<a class="pgtitle-txt txt-on">タスク新規登録</a>
+				<form action="#" th:action="@{/template}" th:method="get">
+					<input type="hidden" name="isForm" value="true">
+					<button class="cmbtn" type="submit">テンプレート</button>
+				</form>
+			</div>
+		</div>
+		<div class="cModal">
+			<div class="cmHeader cmEl" th:text="登録情報"></div>
+			<form class="cmEl crForm" th:action="@{/task/create}" th:method="post" th:object="${task}" name="rgForm">
+				<div class="cmEl"></div>
+				<div class="ctEl">
+					<table>
+						<tr>
+							<td>タイトル</td><td></td>
+							<td><input type="text" name="title" th:value="*{title}" size="100"></td>
+						</tr>
+						<tr><td></td><td></td>
+							<td>
+								<span class="err" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">タイトルエラー</span>
+							</td>
+						</tr>
+						<tr>
+							<td>説明</td><td></td>
+							<td>
+								<textarea class="txtArea" name="description" rows="20" cols="100" th:text="*{description}"></textarea>
+							</td>
+						</tr>
+						<tr><td></td><td></td>
+							<td>
+								<span class="err" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">パスワードエラー</span>
+							</td>
+						</tr>
+						<tr>
+							<td>期限日</td><td></td>
+							<td><input id="due" type="date" name="due" th:value="*{due}" max="2050-12-31" /></td>
+						</tr>
+						<tr><td></td><td></td>
+							<td>
+								<span class="err" th:if="${#fields.hasErrors('due')}" th:errors="*{due}">期限日エラー</span>
+							</td>
+						</tr>
+						<tr>
+							<td>精査有無</td><td></td>
+							<td>
+								<div>
+									<label>あり</label><input type="radio" name="dblCheck" value="true">
+									<label>なし</label><input type="radio" name="dblCheck" value="false" checked="checked">
+								</div>
+							</td>
+						</tr>
+						<tr><td></td><td></td>
+							<td>
+								<span class="err" th:if="${#fields.hasErrors('dblCheck')}" th:errors="*{dblCheck}">精査有無エラー</span>
+							</td>
+						</tr>						
+						<tr>
+							<td>権限</td><td></td>
+							<td>
+								<select class="rgSlt" name="authRangeId">
+									<option th:value="0">権限を選んでください</option>
+									<option th:each="auth, stat : ${list}" th:value="${auth.id}" th:text="|${stat.index + 1}: ${auth.name}|"></option>
+								</select>
+							</td>
+						</tr>
+						<tr><td></td><td></td>
+							<td>
+								<span class="err" th:if="${#fields.hasErrors('authRangeId')}" th:errors="*{authRangeId}">権限エラー</span>
+							</td>
+						</tr>
+						<tr th:if="${!isTemplate}">
+							<td>テンプレートとして</td><td></td>
+							<td>
+								<div>
+									<label>保存する</label><input type="radio" name="template" value="true">
+									<label>保存しない</label><input type="radio" name="template" value="false" checked="checked">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<input type="hidden" name="createrId" th:value="*{createrId}">
+				<input type="hidden" name="isTemplate" th:value="${isTemplate}">
+				<input th:if="${isTemplate}" type="hidden" name="template" value="false">
+			</form>
+			<div class="cmEl"></div>
+			<div class="cmEl fcenter">
+				<div class="spc-betw">
+					<button class="cmbtn bbtn" type="button" onclick="confirmSubmit()">登録</button>
+					<button class="cmbtn deletebtn" type="button" onclick="goTask()">タスク一覧へ戻る</button>
+				</div>
+			</div>
+			<div class="cmBottom cmEl"></div>
+		</div>
+	</div>
+</body>
+</html>

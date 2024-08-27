@@ -27,6 +27,13 @@ public class SecurityConfig {
 				.logoutSuccessUrl("/")
 		).authorizeHttpRequests(auth -> auth
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+				.requestMatchers("/user/register/**").hasAuthority("ADMIN")
+				.requestMatchers("/user/delete/**").hasAuthority("ADMIN")
+				.requestMatchers("/history/delete/**").hasAuthority("HIGH")
+				.requestMatchers("/task/delete/**").hasAuthority("HIGH")
+				.requestMatchers("/template/delete/**").hasAuthority("HIGH")
+				.requestMatchers("/task/toggle/standby/**").hasAuthority("HIGH")
+				.requestMatchers("/task/toggle/check/**").hasAuthority("HIGH")
 				.anyRequest().authenticated()
 		);
 		//.requestMatcher().hasAuthority()

@@ -21,20 +21,14 @@ public class LoginUserDetails implements UserDetails{
 	private final LoginUser user;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public LoginUserDetails(User user, List<Authority> auth) {
+	public LoginUserDetails(User user, String auth) {
 		this.user = new LoginUser();
 		this.user.castUser(user);
 		
 		List<SimpleGrantedAuthority> list = new ArrayList<>();
-		List<Integer> authIds = new ArrayList<>();
-		
-		auth.forEach(el -> {
-			list.add(new SimpleGrantedAuthority(el.getName()));
-			authIds.add(el.getId());
-		});
+		list.add(new SimpleGrantedAuthority(auth));
 		
 		this.authorities = list;
-		this.user.setAuthoritiesId(authIds);
 	}
 	
 	public LoginUser getUser() {

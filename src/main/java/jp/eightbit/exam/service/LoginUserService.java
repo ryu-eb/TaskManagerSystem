@@ -1,7 +1,5 @@
 package jp.eightbit.exam.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.eightbit.exam.entity.Authority;
 import jp.eightbit.exam.entity.LoginUser;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.mapper.AuthMapper;
@@ -34,7 +31,7 @@ public class LoginUserService implements UserDetailsService {
 			throw new UsernameNotFoundException("User not found");
 		}
 		
-		List<Authority> auth = authMapper.getUnderByIdWith(user.getAuthId());
+		String auth = authMapper.getById(user.getAuthId()).getName();
 		
 		return new LoginUserDetails(user, auth);
 	}
@@ -73,12 +70,12 @@ public class LoginUserService implements UserDetailsService {
 	}
 	
 	@Transactional
-	public int getLoginUserId() {
+	public int getId() {
 		return this.getUser().getId();
 	}
 	
 	@Transactional
-	public int getLoginUserAuthId() {
+	public int getAuthId() {
 		return this.getUser().getAuthId();
 	}
 

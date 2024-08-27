@@ -99,7 +99,7 @@ public class UserController {
 		if (br.hasErrors() || exist != null) {
 			if (exist != null) model.addAttribute("message", "既にそのユーザー名は使われています");
 			
-			int loginAuthId = loginUserService.getLoginUserAuthId();
+			int loginAuthId = loginUserService.getAuthId();
 			List<Authority> list = authService.getUnderByIdNotWith(loginAuthId);
 			
 			model.addAttribute("list", list);

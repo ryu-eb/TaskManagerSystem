@@ -29,6 +29,7 @@ public class SecurityConfig {
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 				.anyRequest().authenticated()
 		);
+		//.requestMatcher().hasAuthority()
 		//registerの認証追加する
 		return httpSec.build();
 	}

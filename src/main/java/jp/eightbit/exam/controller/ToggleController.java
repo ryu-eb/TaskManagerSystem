@@ -27,15 +27,41 @@ public class ToggleController {
 	@Autowired
 	LoginUserService loginUserService;
 	
-	@PostMapping("/task/toggle/{id}")
-	public String toggleTask(@PathVariable("id")int id, RedirectAttributes ra){
+	@PostMapping("/task/toggle/inactive/{id}")
+	public String tglInActive(@PathVariable("id")int id, RedirectAttributes ra){
+		return toggleTask(id, ra);
+	}
+	@PostMapping("/task/toggle/active/{id}")
+	public String tglActive(@PathVariable("id")int id, RedirectAttributes ra){
+		return toggleTask(id, ra);
+	}
+	@PostMapping("/task/toggle/standby/{id}")
+	public String tglStandBy(@PathVariable("id")int id, RedirectAttributes ra){
+		return toggleTask(id, ra);
+	}
+	@PostMapping("/task/toggle/check/{id}")
+	public String tglCheck(@PathVariable("id")int id, RedirectAttributes ra){
+		return toggleTask(id, ra);
+	}
+	
+	private String toggleTask(int id, RedirectAttributes ra) {
 		User user = loginUserService.getUser();
 		
 		Task task = taskService.getById(id);
 		List<Status> status = statusService.getAll();
 		int result = historyService.toggleTask(user,task,status,task.isDblCheck());
 		
+		String err = errMessage(result);
+		if (err != null) {
+			ra.addFlashAttribute("errTask", task);
+			ra.addFlashAttribute("err", err);
+		}
+		
+		return "redirect:/task";
+	}
+	private String errMessage(int result) {
 		String err = null;
+		
 		switch (result) {
 		case 0:
 			err = "SQLのエラー";
@@ -53,11 +79,7 @@ public class ToggleController {
 			err = "を完了へ変更できませんでした。精査者のみ精査中から完了に変更できます。";
 			break;
 		}
-		if (err != null) {
-			ra.addFlashAttribute("errTask", task);
-			ra.addFlashAttribute("err", err);
-		}
 		
-		return "redirect:/task";
+		return err;
 	}
 }

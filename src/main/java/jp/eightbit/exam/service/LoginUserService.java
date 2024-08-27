@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.eightbit.exam.entity.Authority;
+import jp.eightbit.exam.entity.LoginUser;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.mapper.AuthMapper;
 import jp.eightbit.exam.mapper.UserMapper;
@@ -46,7 +47,7 @@ public class LoginUserService implements UserDetailsService {
 	}
 	
 	@Transactional
-	public User getLoginUser() {
+	public User getUser() {
 		String username = null;
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -61,13 +62,24 @@ public class LoginUserService implements UserDetailsService {
 	}
 	
 	@Transactional
+	public LoginUser getLoginUser() {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof LoginUserDetails) {
+			return ((LoginUserDetails) principal).getUser();
+		}
+		
+		return null;
+	}
+	
+	@Transactional
 	public int getLoginUserId() {
-		return this.getLoginUser().getId();
+		return this.getUser().getId();
 	}
 	
 	@Transactional
 	public int getLoginUserAuthId() {
-		return this.getLoginUser().getAuthId();
+		return this.getUser().getAuthId();
 	}
 
 }

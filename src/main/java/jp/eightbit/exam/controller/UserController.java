@@ -43,7 +43,7 @@ public class UserController {
 	
 	@GetMapping("/user")
 	public String showUserIndex(Model model) {	
-		User loginuser = logUserServ.getLoginUser();
+		User loginuser = logUserServ.getUser();
 		
 		List<User> list = null;
 		if (loginuser.getAuthId() == 2) {//rootの場合
@@ -74,7 +74,7 @@ public class UserController {
 	@GetMapping("/user/register")
 	public String showRegister(Model model) {
 		//現在ログインしてるユーザー
-		User loginuser = loginUserService.getLoginUser();
+		User loginuser = loginUserService.getUser();
 		
 		//modelに渡す用のユーザー
 		User user = new User();

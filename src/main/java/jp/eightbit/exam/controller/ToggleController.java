@@ -29,7 +29,7 @@ public class ToggleController {
 	
 	@PostMapping("/task/toggle/{id}")
 	public String toggleTask(@PathVariable("id")int id, RedirectAttributes ra){
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		Task task = taskService.getById(id);
 		List<Status> status = statusService.getAll();

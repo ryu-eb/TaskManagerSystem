@@ -34,7 +34,7 @@ public class HistoryController {
 	@GetMapping("history")
 	public String showHistory(Model model) {
 		//ログインユーザー情報の取得
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
 		List<User> fam = null;

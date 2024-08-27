@@ -38,7 +38,7 @@ public class TemplateController {
 	
 	@GetMapping("/template")
 	public String showList(Model model, @ModelAttribute("isForm")boolean isform) {
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		List<Template> list = templateService.getRelateByUser(user);
 		
@@ -77,7 +77,7 @@ public class TemplateController {
 	@GetMapping("/template/create")
 	public String showCreate(Model model) {
 		Template template = new Template();
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		template.setCreaterId(user.getId());
 		template.setParentId(user.getParentId());
@@ -92,7 +92,7 @@ public class TemplateController {
 	@PostMapping("/template/create")
 	public String toCreate(@Validated @ModelAttribute("template")Template template, BindingResult br, Model model) {
 		if (br.hasErrors()) {
-			User user = loginUserService.getLoginUser();
+			User user = loginUserService.getUser();
 			List<Authority> list = authService.getUnderByIdWith(user.getAuthId());
 			
 			model.addAttribute("template", template);

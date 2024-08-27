@@ -52,8 +52,12 @@ public class TaskController {
 	
 	@GetMapping("/task")
 	public String showIndex(Model model, @ModelAttribute("err")String err, @ModelAttribute("errTask")Task errtask) {
+		
+		//debug
+		//loginUserService.getLoginUser().getAuthoritiesId().forEach(el -> MyUt.print("id :" + el));
+		
 		//ログインユーザー情報の取得
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
 		List<User> fam = null;
@@ -92,7 +96,7 @@ public class TaskController {
 	@GetMapping("/task/create")
 	public String showCreate(@ModelAttribute("tmptask")Task task, Model model) {
 		//現在ログインしてるユーザー
-		User loginuser = loginUserService.getLoginUser();
+		User loginuser = loginUserService.getUser();
 
 		//modelに渡す用のタスク
 		task.setCreaterId(loginuser.getId());
@@ -114,7 +118,7 @@ public class TaskController {
 	
 	@PostMapping("/task/create")
 	public String toCreate(@Validated @ModelAttribute("task")Task task, BindingResult br, Model model, @RequestParam("template")boolean tmplate, @ModelAttribute("isTemplate")String istemplate){
-		User user = loginUserService.getLoginUser();
+		User user = loginUserService.getUser();
 		
 		if (br.hasErrors()) {
 			List<Authority> list = authService.getUnderByIdWith(user.getAuthId());

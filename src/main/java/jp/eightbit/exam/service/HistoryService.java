@@ -85,7 +85,7 @@ public class HistoryService {
 	
 	@Transactional
 	public int toggleTask(User user, Task task, List<Status> list, boolean isDbl) {
-		History hist = historyMapper.getByTaskId(task.getId());
+		History hist = historyMapper.getByTaskId(task.getId());//
 		int nowstat = hist.getStatusId();
 		int userid = user.getId();
 		boolean flg = false;
@@ -127,7 +127,6 @@ public class HistoryService {
 			//statIdが同じだったらその次の値へ
 			if (nowstat == index) {
 				flg = true;
-				MyUt.print("nowStat and index is same, so next index....");
 			}
 		}
 		

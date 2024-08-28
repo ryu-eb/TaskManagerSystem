@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" th:href="@{/css/commonModal.css}" type="text/css">
@@ -26,7 +26,7 @@
 				<div class="cmHeader cmEl">
 					<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
 					<form action="#" th:action="@{/template/use/{id}(id=*{id})}" th:method="get">
-						<button class="cmbtn bbtn" type="submit" name="tkBtn" th:text="このテンプレートを使う"></button>
+						<button th:if="${isForm}" class="cmbtn bbtn" type="submit" name="tkBtn" th:text="このテンプレートを使う"></button>
 					</form>
 				</div>
 				<div class="taskDesc cmEl" th:text="*{description}"></div>
@@ -34,7 +34,7 @@
 				<div class="taskDueEdit cmEl cmBottom">
 					<div>作成者&nbsp;<span th:text="${user[__*{id}__]}"></span></div>
 					<form th:if="${!isForm}" action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="get">
-						<button class="cmbtn deletebtn" type="submit">削除</button>
+						<button sec:authorize="hasAuthority('HIGH')" class="cmbtn deletebtn" type="submit">削除</button>
 					</form>
 				</div>
 			</div>

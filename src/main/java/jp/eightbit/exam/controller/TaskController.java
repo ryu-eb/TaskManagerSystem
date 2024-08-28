@@ -144,14 +144,28 @@ public class TaskController {
 	
 	private void addSingleTaskAttribute(Model model, int taskid) {
 		Task task = taskService.getById(taskid);
+		model.addAttribute("task", task);
+		
 		String creater = userService.getById(task.getCreaterId()).getUsername();
+		model.addAttribute("creater", creater);
 		
 		List<History> hist = historyService.getNotDoneTaskHist();
 		Status stat = statusService.getStatusByTaskIdHistList(taskid, hist);
-
-		model.addAttribute("task", task);
-		model.addAttribute("creater", creater);
 		model.addAttribute("stat", stat);
+		
+		String doing = null;
+		switch (historyService.getByTaskId(taskid).getStatusId()) {
+			case 2:
+				doing = userService.getById(historyService.getByTaskId(taskid).getDoneUserId()).getUsername();
+				model.addAttribute("doing", doing);
+				break;
+			case 4:
+				doing = userService.getById(historyService.getByTaskId(taskid).getDoneUserId()).getUsername();
+				model.addAttribute("doing", doing);
+				break;
+			default:
+				break;
+		}
 	}
 	
 	@PostMapping("/task/delete/{taskid}")

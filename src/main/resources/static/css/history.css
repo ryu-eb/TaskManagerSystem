@@ -16,10 +16,3 @@
 .taskDue span{
 	font-weight: bold;
 }
-
-.btnLike {
-	padding: 8px 15px;
-	background: white;
-	font-size: 15px;
-  	border-radius: 5px;
-}

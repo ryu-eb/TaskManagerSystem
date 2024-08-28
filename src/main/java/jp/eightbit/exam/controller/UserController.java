@@ -20,6 +20,7 @@ import jp.eightbit.exam.service.AuthService;
 import jp.eightbit.exam.service.HistoryService;
 import jp.eightbit.exam.service.LoginUserService;
 import jp.eightbit.exam.service.MyUt;
+import jp.eightbit.exam.service.StatusService;
 import jp.eightbit.exam.service.TaskService;
 import jp.eightbit.exam.service.TemplateService;
 import jp.eightbit.exam.service.UserService;
@@ -79,18 +80,15 @@ public class UserController {
 		//modelに渡す用のユーザー
 		User user = new User();
 		user.setParentId(loginuser.getParentId());
-		
-		//ログインしているユーザー以下の権限のリスト
-		List<Authority> list = authService.getUnderByIdNotWith(loginuser.getAuthId());
-		
 		model.addAttribute("user", user);
-		model.addAttribute("list", list);
+		
+		setRegistInfo(loginuser, model);
+		
 		return "userRegister";
 	}
-	
 	@PostMapping("/user/register")
 	public String registerUser(@Validated @ModelAttribute("user")User user, BindingResult br, Model model) {
-		MyUt.print(user.toString());
+		User loginuser = loginUserService.getUser();
 		
 		//バリデーションチェック
 		//入力した情報を持つユーザーがいるかチェック
@@ -98,17 +96,28 @@ public class UserController {
 		
 		if (br.hasErrors() || exist != null) {
 			if (exist != null) model.addAttribute("message", "既にそのユーザー名は使われています");
-			
-			int loginAuthId = loginUserService.getAuthId();
-			List<Authority> list = authService.getUnderByIdNotWith(loginAuthId);
-			
-			model.addAttribute("list", list);
+			setRegistInfo(loginuser, model);
 			return "userRegister";
 		}
 		
 		//上記ユーザーがいなかったら
-		loginUserService.save(user);
+		int savedid = loginUserService.save(user);
 		return "redirect:/user";
+	}
+	private void setRegistInfo(User user, Model model) {
+		//ログインしているユーザーより下の権限のリスト
+		List<Authority> list = authService.getSmallerById(user.getAuthId());
+		model.addAttribute("list", list);
+		
+		//root用の親ユーザー選択リスト
+		if (user.getAuthId() == 2) {
+			List<User> parents = userService.getRootAdmin();
+			model.addAttribute("parents", parents);
+			
+			Map<Integer, String> map = new HashMap<>();
+			parents.forEach(el -> map.put(el.getId(), authService.getById(el.getAuthId()).getName()));
+			model.addAttribute("map", map);
+		}
 	}
 	
 	@GetMapping("/user/delete/{id}")

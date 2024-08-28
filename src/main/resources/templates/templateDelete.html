@@ -6,6 +6,7 @@
 	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/taskDelete.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
+	<script type="text/javascript" th:src="@{/js/stopDbl.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
@@ -30,8 +31,8 @@
 				<span th:text="${auth}"></span>
 			</div>
 			<div class="taskDeleteBackBtn cmEl cmBottom">
-				<form action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="post">
-					<button class="cmbtn deletebtn" type="submit">削除</button>
+				<form action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="post" name="stopDbl">
+					<button class="cmbtn deletebtn" type="button" onclick="stopDbl()" id="stopDbl">削除</button>
 				</form>
 				<button class="cmbtn bbtn" type="button" onclick="goBack()">戻る</button>
 			</div>

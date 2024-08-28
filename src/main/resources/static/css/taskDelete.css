@@ -12,8 +12,3 @@
 	flex-flow: row nowrap;
 	justify-content: space-between;
 }
-
-.invalid-cmbtn:hover {
-	background: white;
-	color: black;
-}

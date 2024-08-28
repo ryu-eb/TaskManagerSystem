@@ -41,10 +41,15 @@
 	border: 2px solid #626262FF;
 	background: white;
 	font-weight: bold;
+	pointer-events: auto;
 }
 .cmbtn:hover {
 	background: #626262FF;
 	color: white;
+}
+.invalid-cmbtn:hover {
+	background: white;
+	color: black;
 }
 
 .tglbtn{

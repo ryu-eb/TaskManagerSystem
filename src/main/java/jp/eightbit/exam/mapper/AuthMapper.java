@@ -15,4 +15,6 @@ public interface AuthMapper {
 	
 	public List<Authority> getUnderByIdWith(int id);
 	
+	public List<Authority> getSmallerById(int id);
+	
 }

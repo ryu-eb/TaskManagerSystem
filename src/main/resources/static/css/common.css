@@ -123,3 +123,9 @@ body {
 	color: black;
 	text-decoration: underline;
 }
+.btnLike {
+	padding: 8px 15px;
+	background: white;
+	font-size: 15px;
+  	border-radius: 5px;
+}

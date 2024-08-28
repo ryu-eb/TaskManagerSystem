@@ -24,8 +24,6 @@
 				</form>
 			</div>
 		</div>
-		<div sec:authorize="isAuthenticated()"><span>isAuthenticated()</span></div>
-		<div sec:authorize="hasAuthority('ADMIN')"><span>hasAuthority('ADMIN')</span></div>
 		<div th:each="tk : ${tasks}" th:object="${tk}">
 			<div class="cModal" th:with="status = ${map[__*{id}__]}">
 				<div class="cmHeader cmEl">
@@ -33,7 +31,17 @@
 					<form action="#" th:action="@{/task/toggle/{status}/{id}(status=${status.param},id=*{id})}" th:method="post" name="tkForm">
 						<input type="hidden" th:value="${status.getId}" name="tkStatus"><!-- js用 -->
 						<input type="hidden" th:value="*{dblCheck}" name="tkDblcheck"><!-- js用 -->
-						<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.name}"></button>
+						<th:block sec:authorize="hasAuthority('HIGH')">
+							<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.name}"></button>
+						</th:block>
+						<th:block th:unless="${#authorization.expression('hasAuthority(''HIGH'')')}" th:switch="true">
+							<th:block th:case="${status.id} <= 2">
+								<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.name}"></button>
+							</th:block>
+							<th:block th:case=*>
+								<div class="btnLike" th:text="${status.name}"></div>
+							</th:block>
+						</th:block>
 					</form>
 				</div>
 				<div class="taskDesc cmEl" th:text="*{description}"></div>

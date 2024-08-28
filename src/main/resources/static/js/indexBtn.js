@@ -59,9 +59,12 @@ window.addEventListener('DOMContentLoaded',() => {
 			let dblCk = form.children.namedItem('tkDblcheck').value;//boolean
 			
 			btn.addEventListener('click', function() {
+				btn.disabled = true;
 				let result = confirm(getBtnText(statusId, dblCk) + 'へ変更します');
 				if (result){
 					form.submit();
+				}else {
+					btn.disabled = false;
 				}
 			});
 		}

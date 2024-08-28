@@ -20,6 +20,7 @@ public class AuthService {
 		return authMapper.getById(id);
 	}
 	
+	//使用してない
 	@Transactional
 	public List<Authority> getUnderByIdNotWith(int id) {
 		return authMapper.getUnderByIdNotWith(id);
@@ -33,5 +34,10 @@ public class AuthService {
 			return list;
 		}
 		return authMapper.getUnderByIdWith(id);
+	}
+	
+	@Transactional
+	public List<Authority> getSmallerById(int id){
+		return authMapper.getSmallerById(id);
 	}
 }

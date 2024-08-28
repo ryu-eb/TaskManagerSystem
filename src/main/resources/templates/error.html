@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+<title>Task Progress Manager</title>
+</head>
+<body>
+	<div>error</div>
+	<div><a th:href="@{/logout}">loginページへ戻る</a></div>
+	<div th:text="|timestamp : ${timestamp}|"></div>
+	<div th:text="|status : ${status}|"></div>
+	<div th:text="|reason : ${error}|"></div>
+	<div th:text="|exception : ${exception}|"></div>
+	<div th:text="|message : ${message}|"></div>
+  	<div sec:authorize="hasAuthority('LOW')" th:text="|trace : ${trace}|"></div>
+</body>
+</html>

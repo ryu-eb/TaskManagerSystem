@@ -16,7 +16,7 @@ public class User {
 	@NotEmpty(message="パスワードを入力してください")
 	private String password;
 	
-	@Min(value=1)
+	@Min(value=1, message="親ユーザーを選んでください")
 	private int parentId;
 	
 	@Min(value=1, message="権限を選んでください")

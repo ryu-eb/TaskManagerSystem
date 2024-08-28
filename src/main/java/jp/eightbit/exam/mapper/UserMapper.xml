@@ -28,4 +28,8 @@
 	<select id="getAll" resultType="jp.eightbit.exam.entity.User">
 		SELECT * FROM user
 	</select>
+	
+	<select id="getRootAdmin" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE authId IN (2,3)
+	</select>
 </mapper>

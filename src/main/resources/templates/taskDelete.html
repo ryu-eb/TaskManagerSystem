@@ -7,8 +7,8 @@
 	<link rel="stylesheet" th:href="@{/css/taskDelete.css}" type="text/css">
 	<script type="module" th:src="@{/js/statusColor.js}"></script>
 	<script type="module" th:src="@{/js/modalColor.js}"></script>
-	<script type="module" th:src="@{/js/indexBtn.js}"></script>
 	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
+	<script type="text/javascript" th:src="@{/js/stopDbl.js}"></script>
 	<title>Task Progress Manager</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
 				<form action="#" th:method="get" name="tkForm">
 					<input type="hidden" th:value="${stat.id}" name="tkStatus"><!-- js用 -->
 					<input type="hidden" th:value="*{dblCheck}" name="tkDblcheck"><!-- js用 -->
-					<button class="cmbtn tglbtn invalid-cmbtn" type="submit" name="tkBtn" th:text="${stat.name}" disabled></button>
+					<div class="btnLike" th:text="${stat.name}"></div>
 				</form>
 			</div>
 			<div class="taskDesc cmEl" th:text="*{description}"></div>
@@ -45,7 +45,7 @@
 			</div>
 			<div class="taskDeleteBackBtn cmEl cmBottom">
 				<form action="#" th:action="@{/task/delete/{id}(id=*{id})}" th:method="post">
-					<button class="cmbtn deletebtn" type="submit">削除</button>
+					<button class="cmbtn deletebtn" type="submit" onclick="disableBtn()" id="disableBtn">削除</button>
 				</form>
 				<button class="cmbtn bbtn" type="button" onclick="goBack()">戻る</button>
 			</div>

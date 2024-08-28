@@ -14,4 +14,8 @@
 		SELECT * FROM authorities WHERE id IN (1, #{id}) OR id &gt; #{id}
 	</select>
 	
+	<select id="getSmallerById" resultType="jp.eightbit.exam.entity.Authority">
+		SELECT * FROM authorities WHERE id &gt; #{id}
+	</select>
+	
 </mapper>

@@ -19,7 +19,9 @@ public interface UserMapper {
 	
 	int deleteById(int id);
 	
-	int updateToMyParent(int id, int parent);//書いたけど使ってないからそのまま
+	int updateToMyParent(int id, int parent);
 	
 	List<User> getAll();
+	
+	List<User> getRootAdmin();
 }

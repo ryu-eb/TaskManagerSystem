@@ -12,10 +12,3 @@
 	flex-flow: row nowrap;
 	justify-content: right;
 }
-
-.btnLike {
-	padding: 8px 15px;
-	background: white;
-	font-size: 15px;
-  	border-radius: 5px;
-}

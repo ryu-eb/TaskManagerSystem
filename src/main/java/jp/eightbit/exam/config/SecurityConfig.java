@@ -36,7 +36,6 @@ public class SecurityConfig {
 				.requestMatchers("/task/toggle/check/**").hasAuthority("HIGH")
 				.anyRequest().authenticated()
 		);
-		//.requestMatcher().hasAuthority()
 		//registerの認証追加する
 		return httpSec.build();
 	}

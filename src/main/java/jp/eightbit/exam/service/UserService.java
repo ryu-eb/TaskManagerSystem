@@ -48,4 +48,14 @@ public class UserService {
 	public List<User> getAll(){
 		return userMapper.getAll();
 	}
+	
+	@Transactional
+	public List<User> getRootAdmin(){
+		return userMapper.getRootAdmin();
+	}
+	
+	@Transactional
+	public int updateParent(int id, int parent) {
+		return userMapper.updateToMyParent(id, parent);
+	}
 }

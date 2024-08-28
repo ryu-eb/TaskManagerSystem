@@ -7,3 +7,4 @@
 
 ## DB作成
 `CREATE TABLE history ....`
+src/main/resources/static/images/

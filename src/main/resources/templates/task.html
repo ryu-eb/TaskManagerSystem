@@ -24,6 +24,9 @@
 				</form>
 			</div>
 		</div>
+		<div class="err" th:if="${!err.isEmpty}" th:object="${errTask}">
+			<span th:text="|｢*{title}｣ ${err}|">error message</span>
+		</div>
 		<div th:each="tk : ${tasks}" th:object="${tk}">
 			<div class="cModal" th:with="status = ${map[__*{id}__]}">
 				<div class="cmHeader cmEl">
@@ -51,9 +54,6 @@
 						<button class="cmbtn" type="submit">詳細</button>
 					</form>
 				</div>
-			</div>
-			<div class="err" th:if="${errTask} != null and ${errTask.id} == *{id}">
-				<span th:text="|*{title}${err}|">test err message</span>
 			</div>
 		</div>
 	</div>

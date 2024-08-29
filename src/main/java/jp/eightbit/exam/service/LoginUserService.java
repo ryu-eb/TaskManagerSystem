@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.eightbit.exam.entity.LoginUser;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.mapper.AuthMapper;
 import jp.eightbit.exam.mapper.UserMapper;
@@ -59,7 +58,7 @@ public class LoginUserService implements UserDetailsService {
 	}
 	
 	@Transactional
-	public LoginUser getLoginUser() {
+	public User getLoginUser() {
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof LoginUserDetails) {

@@ -150,16 +150,17 @@ public class TaskController {
 		model.addAttribute("creater", creater);
 		
 		List<History> hist = historyService.getNotDoneTaskHist();
-		Status stat = statusService.getStatusByTaskIdHistList(taskid, hist);
-		model.addAttribute("stat", stat);
+		Status status = statusService.getStatusByTaskIdHistList(taskid, hist);
+		model.addAttribute("status", status);
 		
 		String doing = null;
+		String dbling = null;
 		switch (historyService.getByTaskId(taskid).getStatusId()) {
-			case 2:
-				doing = userService.getById(historyService.getByTaskId(taskid).getDoneUserId()).getUsername();
-				model.addAttribute("doing", doing);
-				break;
 			case 4:
+				dbling = userService.getById(historyService.getByTaskId(taskid).getDblUserId()).getUsername();
+				model.addAttribute("dbling", dbling);
+			case 3:
+			case 2:
 				doing = userService.getById(historyService.getByTaskId(taskid).getDoneUserId()).getUsername();
 				model.addAttribute("doing", doing);
 				break;

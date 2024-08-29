@@ -49,37 +49,13 @@ public class ToggleController {
 		
 		Task task = taskService.getById(id);
 		List<Status> status = statusService.getAll();
-		int result = historyService.toggleTask(user,task,status,task.isDblCheck());
+		String err = historyService.toggleTask(user,task,status,task.isDblCheck());
 		
-		String err = errMessage(result);
 		if (err != null) {
 			ra.addFlashAttribute("errTask", task);
 			ra.addFlashAttribute("err", err);
 		}
 		
 		return "redirect:/task";
-	}
-	private String errMessage(int result) {
-		String err = null;
-		
-		switch (result) {
-		case 0:
-			err = "SQLのエラー";
-			break;
-		case -1:
-			err = "を精査中へ変更できませんでした。作業者は精査出来ません。";
-			break;
-		case -2:
-			err = "を精査待ちへ変更できませんでした。作業者のみ作業中から精査待ちに変更できます。";
-			break;
-		case -3:
-			err = "を完了へ変更できませんでした。作業者のみ作業中から完了に変更できます。";
-			break;
-		case -4:
-			err = "を完了へ変更できませんでした。精査者のみ精査中から完了に変更できます。";
-			break;
-		}
-		
-		return err;
 	}
 }

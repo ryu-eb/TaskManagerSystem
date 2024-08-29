@@ -8,8 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jp.eightbit.exam.entity.Authority;
-import jp.eightbit.exam.entity.LoginUser;
 import jp.eightbit.exam.entity.User;
 
 public class LoginUserDetails implements UserDetails{
@@ -18,12 +16,11 @@ public class LoginUserDetails implements UserDetails{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final LoginUser user;
+	private final User user;
 	private final Collection<? extends GrantedAuthority> authorities;
 
 	public LoginUserDetails(User user, String auth) {
-		this.user = new LoginUser();
-		this.user.castUser(user);
+		this.user = user;
 		
 		List<SimpleGrantedAuthority> list = new ArrayList<>();
 		list.add(new SimpleGrantedAuthority(auth));
@@ -31,7 +28,7 @@ public class LoginUserDetails implements UserDetails{
 		this.authorities = list;
 	}
 	
-	public LoginUser getUser() {
+	public User getUser() {
 		return this.user;
 	}
 

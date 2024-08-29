@@ -1,6 +1,7 @@
 package jp.eightbit.exam.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.*;
 
@@ -20,7 +21,6 @@ public class TaskService {
 	
 	@Transactional
 	public List<Task> getAllRelateTask(User user, List<User> fam, List<History> hist){
-		List<Task> authlist = new ArrayList<>();
 		
 		if (fam.size() == 0 || hist.size() == 0) return null;
 		
@@ -32,6 +32,7 @@ public class TaskService {
 		List<Task> relatetasks = taskMapper.getRelateTask(family, inactives);
 		
 		//上記リストで権限が該当するもののみを取得
+		List<Task> authlist = new ArrayList<>();
 		for (Task tk : relatetasks) {
 			if (user.getAuthId() == 2) {// ログインユーザーがrootの場合
 				authlist.add(tk);
@@ -42,7 +43,7 @@ public class TaskService {
 			}
 		}
 		
-		return authlist;
+		return authlist.stream().sorted(Comparator.comparing(Task::getDue)).collect(Collectors.toList());
 	}
 	
 	@Transactional

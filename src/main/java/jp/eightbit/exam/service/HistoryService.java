@@ -12,11 +12,14 @@ import jp.eightbit.exam.entity.Status;
 import jp.eightbit.exam.entity.Task;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.mapper.HistoryMapper;
+import jp.eightbit.exam.mapper.UserMapper;
 
 @Service
 public class HistoryService {
 	@Autowired
 	HistoryMapper historyMapper;
+	@Autowired
+	UserMapper userMapper;
 	
 	@Transactional
 	public History getById(int id) {
@@ -84,15 +87,14 @@ public class HistoryService {
 	}
 	
 	@Transactional
-	public int toggleTask(User user, Task task, List<Status> list, boolean isDbl) {
-		History hist = historyMapper.getByTaskId(task.getId());//
+	public String toggleTask(User user, Task task, List<Status> list, boolean isDbl) {
+		History hist = historyMapper.getByTaskId(task.getId());
 		int nowstat = hist.getStatusId();
 		int userid = user.getId();
 		boolean flg = false;
 		
 		for (Status st : list) {
 			int index = st.getId();
-			MyUt.print("index : " + index);
 			if (flg) {
 				switch(index) {
 				case 2://実行中へ
@@ -102,7 +104,9 @@ public class HistoryService {
 					break;
 				case 4://精査中へ
 					MyUt.print("精査中へ変更");
-					if (hist.getDoneUserId() == user.getId()) return -1;
+					User another = userMapper.getById(hist.getDoneUserId());
+					if (another.getAuthId() < user.getAuthId()) return "を精査中へ変更出来ませんでした。自分以下の権限を持つユーザーの精査のみ可能です。";
+					if (hist.getDoneUserId() == user.getId()) return "を精査中へ変更出来ませんでした。作業者以外のみ精査可能です。";
 					hist.setStatusId(4);
 					hist.setDblUserId(userid);
 					break;
@@ -110,14 +114,14 @@ public class HistoryService {
 					MyUt.print("精査待ちへ変更");
 					hist.setDone(MyUt.dateToString(new Date()));
 					if (isDbl) {
-						if (hist.getDoneUserId() != user.getId()) return -2;
+						if (hist.getDoneUserId() != user.getId()) return "を精査待ちへ変更出来ませんでした。作業者のみ作業中から精査待ちに変更可能です。";
 						hist.setStatusId(3);
 						break;
 					}
-					if (hist.getDoneUserId() != user.getId()) return -3;
+					if (hist.getDoneUserId() != user.getId()) return "を完了へ変更出来ませんでした。作業者のみ作業中から完了に変更可能です。";
 				case 5://完了へ
 					MyUt.print("完了へ変更");
-					if (hist.getDblUserId() != user.getId() && hist.getDblUserId() != 0) return -4;
+					if (hist.getDblUserId() != user.getId() && hist.getDblUserId() != 0) return "を完了へ変更出来ませんでした。精査者のみ精査中から完了に変更可能です。";
 					hist.setStatusId(5);
 					if (isDbl) hist.setDbl(MyUt.dateToString(new Date()));
 					break;
@@ -130,6 +134,13 @@ public class HistoryService {
 			}
 		}
 		
-		return historyMapper.save(hist);
+		int save = historyMapper.save(hist);
+		
+		switch (save) {
+			case 1:
+				return null;
+			default:
+				return "を変更できませんでした。SQLのエラー";
+		}
 	}
 }

@@ -25,18 +25,18 @@
 		<div class="cModal" th:object="${task}">
 			<div class="cmHeader cmEl">
 				<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
-				<form action="#" th:action="@{/task/toggle/{id}(id=*{id})}" th:method="post" name="tkForm">
-					<input type="hidden" th:value="${stat.id}" name="tkStatus"><!-- js用 -->
+				<form action="#" th:action="@{/task/toggle/{status}/{id}(status=${status.param},id=*{id})}" th:method="post" name="tkForm">
+					<input type="hidden" th:value="${status.id}" name="tkStatus"><!-- js用 -->
 					<input type="hidden" th:value="*{dblCheck}" name="tkDblcheck"><!-- js用 -->
 					<th:block sec:authorize="hasAuthority('HIGH')">
-						<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${stat.name}"></button>
+						<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.name}"></button>
 					</th:block>
 					<th:block th:unless="${#authorization.expression('hasAuthority(''HIGH'')')}" th:switch="true">
-						<th:block th:case="${stat.id} <= 2">
-							<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${stat.name}"></button>
+						<th:block th:case="${status.id} <= 2">
+							<button class="cmbtn tglbtn" type="button" name="tkBtn" th:text="${status.name}"></button>
 						</th:block>
 						<th:block th:case=*>
-							<div class="btnLike" th:text="${stat.name}"></div>
+							<div class="btnLike" th:text="${status.name}"></div>
 						</th:block>
 					</th:block>
 				</form>
@@ -59,6 +59,10 @@
 			<div class="cmEl" th:if="${doing != null}">
 				<span>作業者&nbsp;</span>
 				<span th:text="${doing}"></span>
+			</div>
+			<div class="cmEl" th:if="${dbling != null}">
+				<span>精査者&nbsp;</span>
+				<span th:text="${dbling}"></span>
 			</div>
 			<div class="taskDeleteBtn cmEl cmBottom">
 				<button class="cmbtn" type="button" onclick="goBack()">戻る</button>

@@ -10,15 +10,27 @@
 ## 機能説明
 ### ログイン機能
 * **ログイン**
-    ![ログイン画面](src/main/resources/static/img/loginpage.png)
+    ![ログイン画面](src/main/resources/static/img/loginPage.pn)
+
 * **ユーザー作成**
-    ![ユーザー作成画面]()
+    ![ユーザー作成画面](src/main/resources/static/img/userRegister.pn)
   - このユーザー作成ページではROOT権限を持つユーザーの作成のみ可能。
+
 ### ユーザー管理
-  - ROOT > ADMIN > HIGH > LOW のいづれかの権限を付与したユーザーの作成が出来る。
+* **ユーザー一覧**
+  ![ユーザー一覧](src/main/resources/static/img/userIndex.pn)
   - ROOT権限を持ったユーザーごとにグループが分かれていて、同じROOTユーザー配下のユーザーを確認できる。
-  - ユーザーの追加および削除はADMIN権限以上のみ。
   - ROOTユーザー作成時に、削除されたユーザーの参照用として「VOID_*」というユーザーも登録される。
+
+* **ユーザー詳細**
+  ![ユーザー詳細](src/main/resources/static/img/userDetail.pn)
+  - ユーザー詳細画面では、基本的な情報と、現在担当しているタスク数が表示される。
+
+* **ユーザー作成と削除**
+  ![ユーザー削除](src/main/resources/static/img/userDelete.pn)
+  - ユーザーの追加および削除はADMIN権限以上のみ。
+  - ROOT > ADMIN > HIGH > LOW のいづれかの権限を付与したユーザーの作成が出来る。
+
 ### タスク管理
   - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがある。
 ### 履歴管理

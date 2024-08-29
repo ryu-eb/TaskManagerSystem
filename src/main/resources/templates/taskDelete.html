@@ -23,9 +23,9 @@
 			<div class="cmHeader cmEl">
 				<div class="taskTitle" th:text="*{title}" th:name="tkTitle"></div>
 				<form action="#" th:method="get" name="tkForm">
-					<input type="hidden" th:value="${stat.id}" name="tkStatus"><!-- js用 -->
+					<input type="hidden" th:value="${status.id}" name="tkStatus"><!-- js用 -->
 					<input type="hidden" th:value="*{dblCheck}" name="tkDblcheck"><!-- js用 -->
-					<div class="btnLike" th:text="${stat.name}"></div>
+					<div class="btnLike" th:text="${status.name}"></div>
 				</form>
 			</div>
 			<div class="taskDesc cmEl" th:text="*{description}"></div>

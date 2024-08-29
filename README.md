@@ -3,17 +3,17 @@
  この。。。。
 
 ## 機能一覧
-**1. 機能一覧**
- - ログイン機能
- - ユーザー登録
- - タスク管理
+1. **機能一覧**
+   - ログイン機能
+   - ユーザー登録
+   - タスク管理
 <br><br>
-**2. 機能説明**
-<br><br>
- ログイン画面
+ 2. **機能説明**
+   - ログイン画面
  ![ログイン画面](src/main/resources/static/img/loginpage.png)
+<br><br>
  
 ## DB作成
 ```sql
-CREATE TABLE history ....
+CREATE TABLE history COLUMN
 ```

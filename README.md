@@ -11,4 +11,5 @@ CREATE TABLE history ....
 ```
 
 ## スクリーンショット
+ログイン画面
 ![ログイン画面](src/main/resources/static/img/loginpage.png)

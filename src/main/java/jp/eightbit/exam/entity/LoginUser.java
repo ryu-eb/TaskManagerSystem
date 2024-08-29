@@ -2,8 +2,8 @@ package jp.eightbit.exam.entity;
 
 import java.util.List;
 
+//ヒエラルキー管理にしたからこいつら必要はなし
 public class LoginUser extends User{
-	//ヒエラルキー管理にしたからこいつら必要はなし
 	
 	private List<Integer> authoritiesId;
 

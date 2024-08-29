@@ -7,7 +7,7 @@
 	<link rel="stylesheet" th:href="@{/css/register.css}" type="text/css">
 	<script type="text/javascript" th:src="@{/js/showConfirm.js}"></script>
 	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
-	<title>Task Progress Manager</title>
+	<title>TaskManagerSystem</title>
 </head>
 <body>
 	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
@@ -60,22 +60,8 @@
 								<span class="err" th:if="${#fields.hasErrors('authId')}" th:errors="*{authId}">権限エラー</span>
 							</td>
 						</tr>
-						<tr th:if="${parents != null}">
-							<td>親ユーザー(admin権限推奨)</td><td></td>
-							<td>
-								<select class="rgSlt" name="parentId" id="parentSelect">
-									<option th:value="0">親ユーザーを選んでください</option>
-									<option th:each="parent, stat : ${parents}" th:value="${parent.id}" th:text="|${stat.index + 1}: ${parent.username} (権限:${map[__${parent.id}__]})|"></option>
-								</select>
-								<input th:if="${parents == null}" type="hidden" name="parentId" th:value="*{parentId}">
-							</td>
-						</tr>
-						<tr><td></td><td></td>
-							<td>
-								<span class="err" th:if="${#fields.hasErrors('parentId')}" th:errors="*{parentId}">親ユーザーエラー</span>
-							</td>
-						</tr>
 					</table>
+					<input type="hidden" name="parentId" th:value="*{parentId}">
 				</div>
 			</form>
 			<div class="cmEl"></div>

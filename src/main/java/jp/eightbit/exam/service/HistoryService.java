@@ -37,8 +37,8 @@ public class HistoryService {
 	}
 	
 	@Transactional
-	public List<History> getDoneTaskHist(){
-		return historyMapper.getDoneTaskHist();
+	public List<History> getDoneTaskHist(int voidid){
+		return historyMapper.getDoneTaskHist(voidid);
 	}
 
 	@Transactional
@@ -80,9 +80,9 @@ public class HistoryService {
 	}
 	
 	@Transactional
-	public int updateToVoid(int id){
-		int done = historyMapper.updateDoneToVoid(id, User.VOID_ID);
-		int dbl = historyMapper.updateDblToVoid(id, User.VOID_ID);
+	public int updateToVoid(int id, int voidid){
+		int done = historyMapper.updateDoneToVoid(id, voidid);
+		int dbl = historyMapper.updateDblToVoid(id, voidid);
 		return done + dbl;
 	}
 	

@@ -9,8 +9,8 @@
 		SELECT * FROM user WHERE id = #{id}
 	</select>
 	
-	<select id="getByParentId" resultType="jp.eightbit.exam.entity.User">
-		SELECT * FROM user WHERE parentId = ${id}
+	<select id="getByParent" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE parentId = #{parentId} AND id &lt;&gt; #{id}
 	</select>
 	
 	<insert id="add" useGeneratedKeys="true" keyProperty="id">
@@ -26,10 +26,18 @@
 	</update>
 	
 	<select id="getAll" resultType="jp.eightbit.exam.entity.User">
-		SELECT * FROM user
+		SELECT * FROM user WHERE parentId = #{parent}
 	</select>
 	
 	<select id="getRootAdmin" resultType="jp.eightbit.exam.entity.User">
 		SELECT * FROM user WHERE authId IN (2,3)
+	</select>
+	
+	<update id="updateParent">
+		UPDATE user SET parentId = #{parentId} WHERE id = #{id}
+	</update>
+	
+	<select id="getRootByParentId" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE parentId = ${id} AND authId = 2
 	</select>
 </mapper>

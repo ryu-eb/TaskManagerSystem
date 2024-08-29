@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class User {
-	public static final int VOID_ID = 9;
+	public static int VOID_ID = 9;
 	
 	private int id;
 	

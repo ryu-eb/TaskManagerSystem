@@ -11,7 +11,10 @@
 	</select>
 	
 	<select id="getDoneTaskHist" resultType="jp.eightbit.exam.entity.History">
-		SELECT * FROM history WHERE statusId = 5
+		SELECT * FROM history WHERE statusId = 5 
+			AND NOT ( (doneUserId = #{voidid} AND dblUserId IS NULL) 
+				OR (doneUserId = #{voidid) AND dblUserId = #{voidid}) 
+			)
 	</select>
 	
 	<select id="getByTaskId" resultType="jp.eightbit.exam.entity.History">

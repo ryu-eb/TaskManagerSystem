@@ -21,7 +21,6 @@ import jp.eightbit.exam.entity.Template;
 import jp.eightbit.exam.entity.User;
 import jp.eightbit.exam.service.AuthService;
 import jp.eightbit.exam.service.LoginUserService;
-import jp.eightbit.exam.service.MyUt;
 import jp.eightbit.exam.service.TemplateService;
 import jp.eightbit.exam.service.UserService;
 
@@ -40,7 +39,7 @@ public class TemplateController {
 	public String showList(Model model, @ModelAttribute("isForm")boolean isform) {
 		User user = loginUserService.getUser();
 		
-		List<Template> list = templateService.getRelateByUser(user);
+		List<Template> list = templateService.getRelateByUser(user, loginUserService.getVoidId());
 		
 		Map<Integer, String> auth = new HashMap<>();
 		Map<Integer, String> users = new HashMap<>();

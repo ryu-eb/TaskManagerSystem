@@ -14,7 +14,7 @@ public interface HistoryMapper {
 	
 	List<History> getNotDoneTaskHist();	
 	
-	List<History> getDoneTaskHist();
+	List<History> getDoneTaskHist(int voidid);
 	
 	History getByTaskId(int id);
 

@@ -13,7 +13,7 @@ public interface UserMapper {
 	
 	User getById(int id);
 	
-	List<User> getByParentId(int id);
+	List<User> getByParent(User voider);
 	
 	int add(User user);
 	
@@ -21,7 +21,11 @@ public interface UserMapper {
 	
 	int updateToMyParent(int id, int parent);
 	
-	List<User> getAll();
+	List<User> getAll(int parent);
 	
-	List<User> getRootAdmin();
+	List<User> getRootAdmin();//
+	
+	int updateParent(User user);
+	
+	User getRootByParentId(int parent);
 }

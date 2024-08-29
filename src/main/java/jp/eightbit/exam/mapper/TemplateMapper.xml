@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jp.eightbit.exam.mapper.TemplateMapper">
 	<select id="getRelateByUser" resultType="jp.eightbit.exam.entity.Template">
-		SELECT * FROM templates WHERE (parentId = #{parentId} AND authRangeId &gt;= #{authId})
-			OR (createrId = #{id} AND authRangeId = 1)
+		SELECT * FROM templates WHERE (parentId = #{user.parentId} AND authRangeId &gt;= #{user.authId} AND createrID &lt;&gt; #{voidid})
+			OR (createrId = #{user.id} AND authRangeId = 1)
 	</select>
 	
 	<select id="getById" resultType="jp.eightbit.exam.entity.Template">
@@ -16,7 +16,7 @@
 	</insert>
 	
 	<update id="updateToVoid">
-		UPDATE templates SET createrId = 9, parentId = 3 WHERE createrId = #{id}
+		UPDATE templates SET createrId = #{voider.id}, parentId = #{voider.parentId} WHERE createrId = #{id}
 	</update>
 	
 	<delete id="deleteById">

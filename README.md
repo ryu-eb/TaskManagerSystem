@@ -9,4 +9,4 @@
 `CREATE TABLE history ....`
 
 ## スクリーンショット
-![ログイン画面](src/main/resources/static/images/loginpage.png)
+![ログイン画面](src/main/resources/static/img/loginpage.png)

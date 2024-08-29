@@ -52,7 +52,7 @@ public class TaskController {
 	
 	@GetMapping("/task")
 	public String showIndex(Model model, @ModelAttribute("err")String err, @ModelAttribute("errTask")Task errtask) {
-		
+		MyUt.print("voiduserId : " + loginUserService.getVoidId());
 		//ログインユーザー情報の取得
 		User user = loginUserService.getUser();
 		

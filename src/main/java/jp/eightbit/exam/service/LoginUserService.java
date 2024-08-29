@@ -57,25 +57,22 @@ public class LoginUserService implements UserDetailsService {
 		return null;
 	}
 	
-	@Transactional
-	public User getLoginUser() {
-		
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof LoginUserDetails) {
-			return ((LoginUserDetails) principal).getUser();
-		}
-		
-		return null;
-	}
-	
-	@Transactional
 	public int getId() {
 		return this.getUser().getId();
 	}
 	
-	@Transactional
 	public int getAuthId() {
 		return this.getUser().getAuthId();
+	}
+	
+	@Transactional
+	private User getVoidUser() {
+		User root = userMapper.getRootByParentId(getUser().getParentId());
+		return userMapper.getByName("void_" + root.getUsername());
+	}
+	
+	public int getVoidId() {
+		return getVoidUser().getId();
 	}
 
 }

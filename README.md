@@ -7,8 +7,9 @@
   - ログイン機能
   - ユーザー登録
   - タスク管理
-<br>
+<br><br>
  **2. 機能説明**
+<br><br>
  ログイン画面
  ![ログイン画面](src/main/resources/static/img/loginpage.png)
  

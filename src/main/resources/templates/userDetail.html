@@ -14,8 +14,13 @@
 		<div class="pgtitle">
 			<div class="pgtitle_pd  spc-betw">
 				<a class="pgtitle-txt txt-on">詳細情報</a>
-				<form action="#" th:action="@{/user/delete/{id}(id=${user.id})}" th:method="get">
-					<button sec:authorize="hasAuthority('ADMIN')" class="cmbtn deletebtn" type="submit">削除</button>
+				<form action="#" th:action="@{/user/delete/{id}(id=${user.id})}" th:method="get" sec:authorize="hasAuthority('ADMIN')">
+					<th:block th:if="${user.authId == 2}">
+						<button sec:authorize="hasAuthority('ROOT')" class="cmbtn deletebtn" type="submit">削除</button>
+					</th:block>
+					<th:block th:unless="${user.authId == 2}">
+						<button class="cmbtn deletebtn" type="submit">削除</button>
+					</th:block>
 				</form>
 			</div>
 		</div>

@@ -6,6 +6,7 @@
  ユーザー登録...
 
 ## DB作成
+```sql
 `CREATE TABLE history ....`
 
 ## スクリーンショット

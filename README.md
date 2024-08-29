@@ -7,4 +7,6 @@
 
 ## DB作成
 `CREATE TABLE history ....`
-src/main/resources/static/images/
+
+## スクリーンショット
+(src/main/resources/static/images/loginpage.png)

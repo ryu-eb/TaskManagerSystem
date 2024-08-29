@@ -3,7 +3,6 @@ package jp.eightbit.exam.entity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import jp.eightbit.exam.service.VoidService;
 
 public class User {
 	public static int VOID_ID = 9;

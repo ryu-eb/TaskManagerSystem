@@ -20,7 +20,7 @@ public class TaskService {
 	TaskMapper taskMapper;
 	
 	@Transactional
-	public List<Task> getAllRelateTask(User user, List<User> fam, List<History> hist){
+	public List<Task> getAllRelateTask(User user, List<User> fam, List<History> hist, User voider){
 		
 		if (fam.size() == 0 || hist.size() == 0) return null;
 		
@@ -38,8 +38,10 @@ public class TaskService {
 				authlist.add(tk);
 			}else if (tk.getCreaterId() == user.getId()) {// タスク作成者がログインユーザーである場合
 				authlist.add(tk);
-			}else if (tk.getAuthRangeId() >= user.getAuthId()) {//　タスク権限idがログインユーザー権限idより大きい(下位の権限)場合
-				authlist.add(tk);
+			}else if(tk.getCreaterId() != voider.getId()) {//タスク作成者がvoidではない場合
+				if (tk.getAuthRangeId() >= user.getAuthId()) {//　タスク権限idがログインユーザー権限idより大きい(下位の権限)場合
+					authlist.add(tk);
+				}
 			}
 		}
 		
@@ -63,8 +65,8 @@ public class TaskService {
 	}
 	
 	@Transactional
-	public int updateToVoid(int id){
-		return taskMapper.updateToVoid(id, User.VOID_ID);
+	public int updateToVoid(int id, int voidid){
+		return taskMapper.updateToVoid(id, voidid);
 	}
 	
 	@Transactional

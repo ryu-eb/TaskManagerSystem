@@ -17,8 +17,8 @@ public class TemplateService {
 	TemplateMapper templateMapper;
 	
 	@Transactional
-	public List<Template> getRelateByUser(User user){
-		return templateMapper.getRelateByUser(user);
+	public List<Template> getRelateByUser(User user, int voidid){
+		return templateMapper.getRelateByUser(user, voidid);
 	}
 	
 	@Transactional
@@ -45,8 +45,8 @@ public class TemplateService {
 	}
 	
 	@Transactional
-	public int updateToVoid(int id) {
-		return templateMapper.updateToVoid(id);
+	public int updateToVoid(int id, User voider) {
+		return templateMapper.updateToVoid(id, voider);
 	}
 	
 	@Transactional

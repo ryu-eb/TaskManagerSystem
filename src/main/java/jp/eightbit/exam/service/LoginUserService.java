@@ -66,13 +66,13 @@ public class LoginUserService implements UserDetailsService {
 	}
 	
 	@Transactional
-	private User getVoidUser() {
+	public User getVoid() {
 		User root = userMapper.getRootByParentId(getUser().getParentId());
-		return userMapper.getByName("void_" + root.getUsername());
+		return userMapper.getByName(VoidUtil.genName(root.getUsername()));
 	}
 	
 	public int getVoidId() {
-		return getVoidUser().getId();
+		return getVoid().getId();
 	}
 
 }

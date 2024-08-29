@@ -15,18 +15,9 @@ public class UserService {
 	
 	@Autowired
 	private UserMapper userMapper;
-	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Transactional
-	public int loginable(String name, String password) {
-		User user = userMapper.getByName(name);
-		
-		if (user == null) return 0;
-		else if (user.getPassword().equals(password)) return user.getId();
-		else return -1;
-	}
 	
 	@Transactional
 	public User getById(int id) {
@@ -39,8 +30,8 @@ public class UserService {
 	}
 
 	@Transactional
-	public List<User> getByParentId(int id){
-		return userMapper.getByParentId(id);
+	public List<User> getByParent(User voider){
+		return userMapper.getByParent(voider);
 	}
 	
 	@Transactional
@@ -54,8 +45,8 @@ public class UserService {
 	}
 	
 	@Transactional
-	public List<User> getAll(){
-		return userMapper.getAll();
+	public List<User> getAll(int parent){
+		return userMapper.getAll(parent);
 	}
 	
 	@Transactional
@@ -78,7 +69,7 @@ public class UserService {
 		
 		//voidユーザー登録処理
 		User voiduser = new User();
-		voiduser.setUsername("void_" + user.getUsername());
+		voiduser.setUsername(VoidUtil.genName(user.getUsername()));
 		voiduser.setPassword(user.getPassword());
 		voiduser.setAuthId(5);
 		voiduser.setParentId(user.getId());

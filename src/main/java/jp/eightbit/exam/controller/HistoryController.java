@@ -35,19 +35,19 @@ public class HistoryController {
 	public String showHistory(Model model) {
 		//ログインユーザー情報の取得
 		User user = loginUserService.getUser();
+		User voider = loginUserService.getVoid();
 		
-		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
-		List<User> fam = null;
+		List<User> fam = null;//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
+		List<History> hist = null;//現時点で完了(id=5)のhistory、rootの場合void含む
 		if (user.getAuthId() == 2) {
-			fam = userService.getAll();/**ここ治す*/
+			fam = userService.getAll(user.getParentId());
+			hist = historyService.getDoneTaskHist(0);
 		}else {
-			fam = userService.getByParentId(user.getParentId());/**ここ治す*/
+			fam = userService.getByParent(voider);
+			hist = historyService.getDoneTaskHist(loginUserService.getVoidId());
 		}
 		
-		//現時点で完了(id=5)のhistory
-		List<History> hist = historyService.getDoneTaskHist();/**ここ治す*/
-		
-		List<Task> tsklist = taskService.getAllRelateTask(user, fam, hist);/**ここ治す?*/
+		List<Task> tsklist = taskService.getAllRelateTask(user, fam, hist, voider);
 		
 		Map<Integer, Integer> histMap = new HashMap<>();
 		tsklist.forEach(el -> {

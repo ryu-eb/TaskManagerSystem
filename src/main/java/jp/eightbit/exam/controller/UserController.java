@@ -32,25 +32,23 @@ public class UserController {
 	@Autowired
 	AuthService authService;
 	@Autowired
-	LoginUserService logUserServ;
+	LoginUserService loginUserService;
 	@Autowired
 	HistoryService historyService;
 	@Autowired
 	TaskService taskService;
 	@Autowired
 	TemplateService templateService;
-	@Autowired
-	LoginUserService loginUserService;
 	
 	@GetMapping("/user")
 	public String showUserIndex(Model model) {	
-		User loginuser = logUserServ.getUser();
+		User loginuser = loginUserService.getUser();
 		
 		List<User> list = null;
 		if (loginuser.getAuthId() == 2) {//rootの場合
-			list = userService.getAll();/**ここ治す*/
+			list = userService.getAll(loginuser.getParentId());
 		}else {
-			list = userService.getByParentId(loginuser.getParentId())/**ここ治す*/;
+			list = userService.getByParent(loginUserService.getVoid());
 		}
 		
 		Map<Integer, Authority> map = new HashMap<>();
@@ -108,16 +106,6 @@ public class UserController {
 		//ログインしているユーザーより下の権限のリスト
 		List<Authority> list = authService.getSmallerById(user.getAuthId());
 		model.addAttribute("list", list);
-		
-		//root用の親ユーザー選択リスト
-		if (user.getAuthId() == 2) {
-			List<User> parents = userService.getRootAdmin();/**ここ治す*/
-			model.addAttribute("parents", parents);
-			
-			Map<Integer, String> map = new HashMap<>();
-			parents.forEach(el -> map.put(el.getId(), authService.getById(el.getAuthId()).getName()));
-			model.addAttribute("map", map);
-		}
 	}
 	
 	@GetMapping("/user/delete/{id}")
@@ -145,10 +133,12 @@ public class UserController {
 	
 	@PostMapping("/user/delete/{id}")
 	public String toDelete(@PathVariable("id")int id) {
-		userService.deleteById(id);/**ここ治す*/
-		taskService.updateToVoid(id);/**ここ治す*/
-		historyService.updateToVoid(id);/**ここ治す*/
-		templateService.updateToVoid(id);/**ここ治す*/
+		User voider = loginUserService.getVoid();
+		
+		userService.deleteById(id);
+		taskService.updateToVoid(id, voider.getId());
+		historyService.updateToVoid(id, voider.getId());
+		templateService.updateToVoid(id, voider);
 		
 		return "redirect:/user";
 	}

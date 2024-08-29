@@ -55,19 +55,20 @@ public class TaskController {
 		MyUt.print("voiduserId : " + loginUserService.getVoidId());
 		//ログインユーザー情報の取得
 		User user = loginUserService.getUser();
+		User voider = loginUserService.getVoid();
 		
 		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
 		List<User> fam = null;
 		if (user.getAuthId() == 2) {//rootの場合
-			fam = userService.getAll();/**ここ治す*/
+			fam = userService.getAll(user.getParentId());
 		}else {
-			fam = userService.getByParentId(user.getParentId());/**ここ治す*/
+			fam = userService.getByParent(voider);
 		}
 		
 		//現時点で完了以外(id<>5)のhistory
 		List<History> hist = historyService.getNotDoneTaskHist();
 		
-		List<Task> tsklist = taskService.getAllRelateTask(user, fam, hist);
+		List<Task> tsklist = taskService.getAllRelateTask(user, fam, hist, voider);
 		model.addAttribute("tasks", tsklist);
 		
 		//ステータスリストの取得

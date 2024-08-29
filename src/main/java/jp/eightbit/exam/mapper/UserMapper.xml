@@ -32,4 +32,12 @@
 	<select id="getRootAdmin" resultType="jp.eightbit.exam.entity.User">
 		SELECT * FROM user WHERE authId IN (2,3)
 	</select>
+	
+	<update id="updateParent">
+		UPDATE user SET parentId = #{parentId} WHERE id = #{id}
+	</update>
+	
+	<select id="getRootByParentId" resultType="jp.eightbit.exam.entity.User">
+		SELECT * FROM user WHERE parentId = ${id} AND authId = 2
+	</select>
 </mapper>

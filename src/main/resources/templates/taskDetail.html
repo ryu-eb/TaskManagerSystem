@@ -9,7 +9,7 @@
 	<script type="module" th:src="@{/js/modalColor.js}"></script>
 	<script type="module" th:src="@{/js/indexBtn.js}"></script>
 	<script type="text/javascript" th:src="@{/js/goWhere.js}"></script>
-	<title>Task Progress Manager</title>
+	<title>TaskManagerSystem</title>
 </head>
 <body>
 	<div class="replace" th:replace="~{/parts/header_part :: my-header-fragment}"></div>
@@ -58,11 +58,11 @@
 			</div>
 			<div class="cmEl" th:if="${doing != null}">
 				<span>作業者&nbsp;</span>
-				<span th:text="${doing}"></span>
+				<span th:text="${doing.username}"></span>
 			</div>
 			<div class="cmEl" th:if="${dbling != null}">
 				<span>精査者&nbsp;</span>
-				<span th:text="${dbling}"></span>
+				<span th:text="${dbling.username}"></span>
 			</div>
 			<div class="taskDeleteBtn cmEl cmBottom">
 				<button class="cmbtn" type="button" onclick="goBack()">戻る</button>

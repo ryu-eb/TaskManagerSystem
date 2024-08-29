@@ -27,6 +27,7 @@ public class SecurityConfig {
 				.logoutSuccessUrl("/")
 		).authorizeHttpRequests(auth -> auth
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+				.requestMatchers("/root/**").permitAll()
 				.requestMatchers("/user/register/**").hasAuthority("ADMIN")
 				.requestMatchers("/user/delete/**").hasAuthority("ADMIN")
 				.requestMatchers("/history/delete/**").hasAuthority("HIGH")

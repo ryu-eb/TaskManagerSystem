@@ -53,18 +53,15 @@ public class TaskController {
 	@GetMapping("/task")
 	public String showIndex(Model model, @ModelAttribute("err")String err, @ModelAttribute("errTask")Task errtask) {
 		
-		//debug
-		//loginUserService.getLoginUser().getAuthoritiesId().forEach(el -> MyUt.print("id :" + el));
-		
 		//ログインユーザー情報の取得
 		User user = loginUserService.getUser();
 		
 		//ログインユーザーと同じparentIdをもつユーザーの取得、rootの場合全ユーザーの取得
 		List<User> fam = null;
 		if (user.getAuthId() == 2) {//rootの場合
-			fam = userService.getAll();
+			fam = userService.getAll();/**ここ治す*/
 		}else {
-			fam = userService.getByParentId(user.getParentId());
+			fam = userService.getByParentId(user.getParentId());/**ここ治す*/
 		}
 		
 		//現時点で完了以外(id<>5)のhistory
@@ -153,15 +150,16 @@ public class TaskController {
 		Status status = statusService.getStatusByTaskIdHistList(taskid, hist);
 		model.addAttribute("status", status);
 		
-		String doing = null;
-		String dbling = null;
-		switch (historyService.getByTaskId(taskid).getStatusId()) {
+		User doing = null;
+		User dbling = null;
+		History history = historyService.getByTaskId(taskid);
+		switch (history.getStatusId()) {
 			case 4:
-				dbling = userService.getById(historyService.getByTaskId(taskid).getDblUserId()).getUsername();
+				dbling = userService.getById(history.getDblUserId());
 				model.addAttribute("dbling", dbling);
 			case 3:
 			case 2:
-				doing = userService.getById(historyService.getByTaskId(taskid).getDoneUserId()).getUsername();
+				doing = userService.getById(history.getDoneUserId());
 				model.addAttribute("doing", doing);
 				break;
 			default:

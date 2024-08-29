@@ -48,9 +48,9 @@ public class UserController {
 		
 		List<User> list = null;
 		if (loginuser.getAuthId() == 2) {//rootの場合
-			list = userService.getAll();
+			list = userService.getAll();/**ここ治す*/
 		}else {
-			list = userService.getByParentId(loginuser.getParentId());
+			list = userService.getByParentId(loginuser.getParentId())/**ここ治す*/;
 		}
 		
 		Map<Integer, Authority> map = new HashMap<>();
@@ -111,7 +111,7 @@ public class UserController {
 		
 		//root用の親ユーザー選択リスト
 		if (user.getAuthId() == 2) {
-			List<User> parents = userService.getRootAdmin();
+			List<User> parents = userService.getRootAdmin();/**ここ治す*/
 			model.addAttribute("parents", parents);
 			
 			Map<Integer, String> map = new HashMap<>();
@@ -145,10 +145,10 @@ public class UserController {
 	
 	@PostMapping("/user/delete/{id}")
 	public String toDelete(@PathVariable("id")int id) {
-		userService.deleteById(id);
-		taskService.updateToVoid(id);
-		historyService.updateToVoid(id);
-		templateService.updateToVoid(id);
+		userService.deleteById(id);/**ここ治す*/
+		taskService.updateToVoid(id);/**ここ治す*/
+		historyService.updateToVoid(id);/**ここ治す*/
+		templateService.updateToVoid(id);/**ここ治す*/
 		
 		return "redirect:/user";
 	}

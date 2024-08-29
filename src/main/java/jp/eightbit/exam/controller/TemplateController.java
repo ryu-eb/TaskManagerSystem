@@ -40,7 +40,7 @@ public class TemplateController {
 	public String showList(Model model, @ModelAttribute("isForm")boolean isform) {
 		User user = loginUserService.getUser();
 		
-		List<Template> list = templateService.getRelateByUser(user);
+		List<Template> list = templateService.getRelateByUser(user);/**ここ治す*/
 		
 		Map<Integer, String> auth = new HashMap<>();
 		Map<Integer, String> users = new HashMap<>();

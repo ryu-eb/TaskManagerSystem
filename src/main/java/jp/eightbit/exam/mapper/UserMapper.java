@@ -24,4 +24,8 @@ public interface UserMapper {
 	List<User> getAll();
 	
 	List<User> getRootAdmin();
+	
+	int updateParent(User user);
+	
+	User getRootByParentId(int parent);
 }

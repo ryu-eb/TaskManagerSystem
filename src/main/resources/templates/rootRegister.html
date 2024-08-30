@@ -21,6 +21,7 @@
 			<input type="hidden" name="parentId" th:value="1">
 		</form>
 		<div class="err"><span th:if="${param.error}">ユーザー名かパスワードが違います。</span></div>
+		<div class="link"><a th:href="@{/login}">ログインページに戻る</a></div>
 	</div>
 </body>
 </html>

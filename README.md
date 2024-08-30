@@ -10,29 +10,42 @@
 ## 機能説明
 ### ログイン機能
 * **ログイン**
-    ![ログイン画面](src/main/resources/static/img/loginPage.pn)
+    <br>![ログイン画面](src/main/resources/static/img/loginPage.pn)
 
 * **ユーザー作成**
-    ![ユーザー作成画面](src/main/resources/static/img/userRegister.pn)
-  - このユーザー作成ページではROOT権限を持つユーザーの作成のみ可能。
+  - このユーザー作成ページではROOT権限を持つユーザーの作成のみ可能です。
+    <br>![ユーザー作成画面](src/main/resources/static/img/userRegister.pn)
 
 ### ユーザー管理
 * **ユーザー一覧**
-  ![ユーザー一覧](src/main/resources/static/img/userIndex.pn)
-  - ROOT権限を持ったユーザーごとにグループが分かれていて、同じROOTユーザー配下のユーザーを確認できる。
-  - ROOTユーザー作成時に、削除されたユーザーの参照用として「VOID_*」というユーザーも登録される。
+  - ROOT権限を持ったユーザーごとにグループが分かれていて、同じROOTユーザー配下のユーザーを確認できます。
+  - ROOTユーザー作成時に、削除されたユーザーの参照用として「VOID_*」というユーザーも登録されます。
+    <br>![ユーザー一覧](src/main/resources/static/img/userIndex.pn)
 
 * **ユーザー詳細**
-  ![ユーザー詳細](src/main/resources/static/img/userDetail.pn)
-  - ユーザー詳細画面では、基本的な情報と、現在担当しているタスク数が表示される。
+  - ユーザー詳細画面では、基本的な情報と、現在担当しているタスク数が表示されます。
+    <br>![ユーザー詳細](src/main/resources/static/img/userDetail.pn)
 
 * **ユーザー作成と削除**
-  ![ユーザー削除](src/main/resources/static/img/userDelete.pn)
-  - ユーザーの追加および削除はADMIN権限以上のみ。
-  - ROOT > ADMIN > HIGH > LOW のいづれかの権限を付与したユーザーの作成が出来る。
+  - ユーザーの追加および削除はADMIN権限以上のみです。
+  - ROOT > ADMIN > HIGH > LOW のいづれかの権限を付与したユーザーの作成ができ、自分より下の権限を持つユーザーの作成が可能です。
+  - この画面から作成したユーザーは自動的に同グループに入ります。
+    <br>![ユーザー作成](src/main/resources/static/img/userCreate.pn)
+  - ユーザー削除時は、タスクや履歴の参照先ユーザーが、削除されるユーザーから「VOID_*」ユーザーに変更されます。
+    <br>![ユーザー削除](src/main/resources/static/img/userDelete.pn)
+    <br>![ユーザー削除時参照変更](src/main/resources/static/img/deletedUser.pn)
 
 ### タスク管理
-  - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがある。
+* **タスク一覧**
+  - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがあり、画面には期限日が近い順で表示されます。
+  - 同グループの自分以下の権限を持つタスクが表示されます。タスク権限が「OWN」の時の場合、作成者のみに表示されます。
+    <br>![タスク一覧](src/main/resources/static/img/taskIndex.pn)
+  - 右上のステータスを表すボタンを押すことで、そのタスクの状態を変更できます。また、実行中または精査中に変更したユーザーのみが精査待ちまたは完了に変更できます。
+    <br>![タスク](src/main/resources/static/img/taskIndex.pn)
+* **詳細画面**
+  - 
+* **新規作成と削除**
+
 ### 履歴管理
   - 完了したタスクを確認出来る。
  

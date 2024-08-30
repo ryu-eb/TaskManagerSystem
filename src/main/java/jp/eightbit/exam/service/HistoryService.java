@@ -114,11 +114,11 @@ public class HistoryService {
 					MyUt.print("精査待ちへ変更");
 					hist.setDone(MyUt.dateToString(new Date()));
 					if (isDbl) {
-						if (hist.getDoneUserId() != user.getId()) return "を精査待ちへ変更出来ませんでした。作業者のみ作業中から精査待ちに変更可能です。";
+						if (hist.getDoneUserId() != user.getId()) return "を精査待ちへ変更出来ませんでした。作業者のみ実行中から精査待ちに変更可能です。";
 						hist.setStatusId(3);
 						break;
 					}
-					if (hist.getDoneUserId() != user.getId()) return "を完了へ変更出来ませんでした。作業者のみ作業中から完了に変更可能です。";
+					if (hist.getDoneUserId() != user.getId()) return "を完了へ変更出来ませんでした。作業者のみ実行中から完了に変更可能です。";
 				case 5://完了へ
 					MyUt.print("完了へ変更");
 					if (hist.getDblUserId() != user.getId() && hist.getDblUserId() != 0) return "を完了へ変更出来ませんでした。精査者のみ精査中から完了に変更可能です。";

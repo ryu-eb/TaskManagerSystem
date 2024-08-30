@@ -13,12 +13,12 @@
     <br>![ログイン画面](src/main/resources/static/img/loginPage.pn)
 
 * **ユーザー作成**
-  - このユーザー作成ページではROOT権限を持つユーザーの作成のみ可能です。
+  - このユーザー作成ページでは「ROOT」権限を持つユーザーの作成のみ可能です。
     <br>![ユーザー作成画面](src/main/resources/static/img/userRegister.pn)
 
 ### ユーザー管理
 * **ユーザー一覧**
-  - ROOT権限を持ったユーザーごとにグループが分かれていて、同じROOTユーザー配下のユーザーを確認できます。
+  - ROOT権限を持ったユーザーごとにグループが分かれていて、同じグループ配下のユーザーを確認できます。
   - ROOTユーザー作成時に、削除されたユーザーの参照用として「VOID_*」というユーザーも登録されます。
     <br>![ユーザー一覧](src/main/resources/static/img/userIndex.pn)
 
@@ -28,23 +28,26 @@
 
 * **ユーザー作成と削除**
   - ユーザーの追加および削除はADMIN権限以上のみです。
-  - ROOT > ADMIN > HIGH > LOW のいづれかの権限を付与したユーザーの作成ができ、自分より下の権限を持つユーザーの作成が可能です。
+  - 「ROOT > ADMIN > HIGH > LOW」のいづれかの権限を付与したユーザーの作成ができ、自分より下の権限を持つユーザーの作成が可能です。
   - この画面から作成したユーザーは自動的に同グループに入ります。
     <br>![ユーザー作成](src/main/resources/static/img/userCreate.pn)
   - ユーザー削除時は、タスクや履歴の参照先ユーザーが、削除されるユーザーから「VOID_*」ユーザーに変更されます。
     <br>![ユーザー削除](src/main/resources/static/img/userDelete.pn)
-    <br>![ユーザー削除時参照変更](src/main/resources/static/img/deletedUser.pn)
+    <br>![ユーザー削除時参照変更](src/main/resources/static/img/deletedUser.png)
 
 ### タスク管理
 * **タスク一覧**
   - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがあり、画面には期限日が近い順で表示されます。
   - 同グループの自分以下の権限を持つタスクが表示されます。タスク権限が「OWN」の時の場合、作成者のみに表示されます。
     <br>![タスク一覧](src/main/resources/static/img/taskIndex.pn)
-  - 右上のステータスを表すボタンを押すことで、そのタスクの状態を変更できます。また、実行中または精査中に変更したユーザーのみが精査待ちまたは完了に変更できます。
-    <br>![タスク](src/main/resources/static/img/taskIndex.pn)
+  - 右上のステータスを表すボタンを押すことで、そのタスクのステータスを変更できます。また、実行中または精査中に変更したユーザーのみが精査待ちまたは完了に変更できます。
+    <br>![タスクトグル](src/main/resources/static/img/taskToggle.png)
+    <br>![タスクトグル失敗](src/main/resources/static/img/toggleFail.png)
 * **詳細画面**
-  - 
+  - タスクのより詳細な情報が確認できます。またこの画面からのステータス変更も可能です。
+    <br>![タスク詳細](src/main/resources/static/img/taskDetail.png)
 * **新規作成と削除**
+    <br>![タスク](src/main/resources/static/img/taskIndex.png)
 
 ### 履歴管理
   - 完了したタスクを確認出来る。
@@ -114,3 +117,8 @@ INSERT INTO status ( name, param ) VALUES ( '精査待ち', 'standby' );
 INSERT INTO status ( name, param ) VALUES ( '精査中', 'check' );
 INSERT INTO status ( name, param ) VALUES ( '完了', 'complete' );
 ```
+## 使用技術
+* **フロントエンド** HTML, CSS, JavaScript
+* **バックエンド** Java, Spring Boot
+* **データベース** MySQL
+* **テンプレートエンジン** Thymeleaf

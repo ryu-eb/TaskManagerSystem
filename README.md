@@ -11,17 +11,20 @@
 ### ログイン機能
 * **ログイン**
   - ログイン画面です。
-    <br>![ログイン画面](src/main/resources/static/img/loginPage.pn)
+    <br>![ログイン画面](https://github.com/user-attachments/assets/a972715f-5005-4afc-a3e2-e28ba493b0cb)
+
 
 * **ユーザー作成**
   - このユーザー作成ページでは「ROOT」権限を持つユーザーの作成のみ可能です。
-    <br>![ユーザー作成画面](src/main/resources/static/img/userRegister.pn)
+    <br>![ユーザー作成画面](https://github.com/user-attachments/assets/616d9f4d-9ce6-4396-b190-a4ddbbb1e4da)
+
 
 ### ユーザー管理
 * **ユーザー一覧**
   - ROOT権限を持ったユーザーごとにグループが分かれていて、同じグループ配下のユーザーを確認できます。
   - ROOTユーザー作成時に、削除されたユーザーの参照用として「VOID_*」というユーザーも登録されます。
-    <br>![ユーザー一覧](src/main/resources/static/img/userIndex.pn)
+    <br>![ユーザー一覧](https://github.com/user-attachments/assets/56d5fab1-91b5-4dfb-a604-53a1ddb071f6)
+
 
 * **ユーザー詳細**
   - ユーザー詳細画面では、基本的な情報と、現在担当しているタスク数が表示されます。
@@ -31,7 +34,8 @@
   - ユーザーの追加および削除はADMIN権限以上のみです。
   - 「ROOT > ADMIN > HIGH > LOW」のいづれかの権限を付与したユーザーの作成ができ、自分より下の権限を持つユーザーの作成が可能です。
   - この画面から作成したユーザーは自動的に同グループに入ります。
-    <br>![ユーザー作成](src/main/resources/static/img/userCreate.pn)
+    <br>![ユーザー作成](https://github.com/user-attachments/assets/9b8e0cc7-290b-40b4-844d-1da83ded74ad)
+
   - ユーザー削除時は、タスクや履歴の参照先ユーザーが、削除されるユーザーから「VOID_*」ユーザーに変更されます。
     <br>![ユーザー削除](src/main/resources/static/img/userDelete.pn)
     <br>![ユーザー削除時参照変更](src/main/resources/static/img/deletedUser.png)
@@ -48,13 +52,14 @@
     <br>![テンプレート一覧](src/main/resources/static/img/toggleFail.png)
 * **詳細画面**
   - タスクのより詳細な情報が確認できます。またこの画面からのステータス変更も可能です。
-    <br>![タスク詳細](src/main/resources/static/img/taskDetail.png)
   - タスクのステータスが実行中より後の状態なら作業者が表示され、精査中の場合は精査者が表示されます。
     <br>![タスク作業者](src/main/resources/static/img/taskDetail.png)
 * **新規作成と削除**
   - タスク新規作成画面です。新規作成時に同内容でテンプレートへ保存要否を選択できます。
   - タスクの権限には[OWN]があり、これは自分自身のみに表示されます。また、自分以下の権限を持つタスクを作成可能で、「LOW」ユーザーはOWN権限を持つタスクの作成のみが可能です。テンプレートについても同様です。
-    <br>![タスク新規作成](src/main/resources/static/img/taskIndex.png)
+    <br>![タスク新規作成](https://github.com/user-attachments/assets/26f29ad8-219f-4afb-a46f-318ef2172fdc)
+    <br>![テンプレート新規作成](https://github.com/user-attachments/assets/e51371d3-0f77-4889-965f-5c1b3cc72366)
+
   - タスクの新規作成時に、右上の「テンプレート」を押下することでテンプレートを選べます。
     <br>![テンプレート選択](srmain/resources/static/img/taskIndex.png)
   - タスク削除画面です。タスク削除時にはそのタスクが持つ履歴も一緒に削除されます。

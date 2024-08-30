@@ -37,16 +37,20 @@
 
 ### タスク管理
 * **タスク一覧**
-  - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがあり、画面には期限日が近い順で表示されます。
+  - 実行待ち、実行中、精査待ち、精査中、完了 の5つのステータスがあり、画面には期限日が近い順で表示されます。完了のタスクは表示されません。
   - 同グループの自分以下の権限を持つタスクが表示されます。タスク権限が「OWN」の時の場合、作成者のみに表示されます。
     <br>![タスク一覧](src/main/resources/static/img/taskIndex.pn)
   - 右上のステータスを表すボタンを押すことで、そのタスクのステータスを変更できます。また、実行中または精査中に変更したユーザーのみが精査待ちまたは完了に変更できます。
     <br>![タスクトグル](src/main/resources/static/img/taskToggle.png)
     <br>![タスクトグル失敗](src/main/resources/static/img/toggleFail.png)
+  - タスクとは別にテンプレートがあり、
 * **詳細画面**
   - タスクのより詳細な情報が確認できます。またこの画面からのステータス変更も可能です。
     <br>![タスク詳細](src/main/resources/static/img/taskDetail.png)
+  - タスクのステータスが実行中より後の状態なら作業者が表示され、精査中の場合は精査者が表示されます。
+    <br>![タスク作業者](src/main/resources/static/img/taskDetail.png)
 * **新規作成と削除**
+  - タスク新規作成では
     <br>![タスク](src/main/resources/static/img/taskIndex.png)
 
 ### 履歴管理

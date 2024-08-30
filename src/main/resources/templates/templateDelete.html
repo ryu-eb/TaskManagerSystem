@@ -32,7 +32,7 @@
 			</div>
 			<div class="taskDeleteBackBtn cmEl cmBottom">
 				<form action="#" th:action="@{/template/delete/{id}(id=*{id})}" th:method="post" name="stopDbl">
-					<button class="cmbtn deletebtn" type="button" onclick="stopDbl()" id="stopDbl">削除</button>
+					<button class="cmbtn deletebtn" type="submit" onclick="stopDbl()" id="stopDbl">削除</button>
 				</form>
 				<button class="cmbtn bbtn" type="button" onclick="goBack()">戻る</button>
 			</div>

@@ -61,7 +61,7 @@
   - タスクの権限には[OWN]があり、これは自分自身のみに表示されます。また、自分以下の権限を持つタスクを作成可能で、「LOW」ユーザーはOWN権限を持つタスクの作成のみが可能です。テンプレートについても同様です。
     <br>![タスク新規作成](https://github.com/user-attachments/assets/26f29ad8-219f-4afb-a46f-318ef2172fdc)<br>
     <br>![テンプレート新規作成](https://github.com/user-attachments/assets/e51371d3-0f77-4889-965f-5c1b3cc72366)<br>
-  - タスクの新規作成時に、右上の「テンプレート」を押下することでテンプレートを選べます。
+  - タスクの新規画面から、右上の「テンプレート」を押下することでテンプレートを選べます。
     <br>![テンプレート選択](https://github.com/user-attachments/assets/c4021cf7-a09a-42d9-868f-bd51ea5da23e)<br>
   - タスク削除画面です。タスク削除時にはそのタスクが持つ履歴も一緒に削除されます。
     <br>![タスク削除](https://github.com/user-attachments/assets/8f893444-a634-4e5f-a507-6de1d59f687d)<br>

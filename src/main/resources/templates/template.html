@@ -17,7 +17,7 @@
 					<a class="pgtitle-txt txt-off" th:href="@{/task}" th:if="${!isForm}">タスク一覧</a>
 					<a class="pgtitle-txt txt-on">テンプレート一覧</a>
 				</div>
-				<button th:if="${!isForm}" class="cmbtn bbtn" type="button" onclick="goTmpCreate()">新規作成</button>
+				<button th:if="${!isForm}" class="cmbtn bbtn" type="button" onclick="goTmpCreate()">テンプレート作成</button>
 				<button th:if="${isForm}" class="cmbtn deletebtn" type="button" onclick="goBack()">戻る</button>
 			</div>
 		</div>

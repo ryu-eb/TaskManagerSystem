@@ -86,7 +86,7 @@ id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 username VARCHAR(255) NOT NULL, 
 password VARCHAR(255) NOT NULL, 
 parentId INT NOT NULL, 
-authId INT NOT NULL, 
+authId INT NOT NULL
 );
 
 CREATE table tasks (
@@ -96,7 +96,7 @@ description VARCHAR(500),
 due DATE,
 dblCheck BOOLEAN,
 createrId INT NOT NULL,
-authRangeId INT NOT NULL,
+authRangeId INT NOT NULL
 );
 
 CREATE table tasks (
@@ -105,7 +105,7 @@ title VARCHAR(50),
 description VARCHAR(500), 
 createrId INT NOT NULL,
 parentId INT NOT NULL,
-authRangeId INT NOT NULL,
+authRangeId INT NOT NULL
 );
 
 CREATE table history (
@@ -115,7 +115,7 @@ doneUserId INT,
 dbl DATE,
 dblUserId INT, 
 taskId INT NOT NULL, 
-statusId INT NOT NULL, 
+statusId INT NOT NULL
 );
 
 CREATE table authorities (
@@ -125,7 +125,7 @@ name VARCHAR(10)
 
 CREATE table status (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-name VARCHAR(10)
+name VARCHAR(10),
 param VARCHAR(10)
 );
 

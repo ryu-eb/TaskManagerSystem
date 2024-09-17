@@ -99,7 +99,7 @@ createrId INT NOT NULL,
 authRangeId INT NOT NULL
 );
 
-CREATE table tasks (
+CREATE table templates (
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 title VARCHAR(50), 
 description VARCHAR(500), 
